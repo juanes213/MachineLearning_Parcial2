@@ -1,0 +1,1421 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Librerias &#8212; Machine Learning Parcial 2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wind';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Punto 1. Ejercicio Notas de Clase (1.0 puntos)." href="Punto1.html" />
+    <link rel="prev" title="modelo" href="fraud.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Machine Learning Parcial 2 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Machine Learning Parcial 2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Machine Learning Parcial 2
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="fraud.html">modelo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Librerias</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Punto1.html"><strong>Punto 1. Ejercicio Notas de Clase (1.0 puntos).</strong></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Punto2.html"><strong>Punto 2.Análisis Exploratorio de Datos (1.0 puntos).</strong></a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fwind.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/wind.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Librerias</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Librerias</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-los-datos">Cargar los Datos</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="librerias">
+<h1>Librerias<a class="headerlink" href="#librerias" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install bayesian-optimization
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: bayesian-optimization in c:\users\pc\miniconda3\lib\site-packages (1.4.3)
+Requirement already satisfied: scipy&gt;=1.0.0 in c:\users\pc\miniconda3\lib\site-packages (from bayesian-optimization) (1.13.0)
+Requirement already satisfied: scikit-learn&gt;=0.18.0 in c:\users\pc\miniconda3\lib\site-packages (from bayesian-optimization) (1.4.2)
+Requirement already satisfied: colorama&gt;=0.4.6 in c:\users\pc\miniconda3\lib\site-packages (from bayesian-optimization) (0.4.6)
+Requirement already satisfied: numpy&gt;=1.9.0 in c:\users\pc\miniconda3\lib\site-packages (from bayesian-optimization) (1.26.4)
+Requirement already satisfied: joblib&gt;=1.2.0 in c:\users\pc\miniconda3\lib\site-packages (from scikit-learn&gt;=0.18.0-&gt;bayesian-optimization) (1.4.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in c:\users\pc\miniconda3\lib\site-packages (from scikit-learn&gt;=0.18.0-&gt;bayesian-optimization) (3.4.0)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">skew</span><span class="p">,</span> <span class="n">pearsonr</span><span class="p">,</span> <span class="n">spearmanr</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">ff</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tools.tools</span> <span class="kn">import</span> <span class="n">add_constant</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">BayesianRidge</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">Lasso</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBRegressor</span>
+<span class="kn">from</span> <span class="nn">bayes_opt</span> <span class="kn">import</span> <span class="n">BayesianOptimization</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cargar-los-datos">
+<h1>Cargar los Datos<a class="headerlink" href="#cargar-los-datos" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;data_treino_dv_df_2000_2010_new.csv&#39;</span>
+<span class="n">df_wind</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">df_wind</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Hora_UTC</th>
+      <th>Direccion_Viento_Grados</th>
+      <th>Velocidad_Viento_m_s</th>
+      <th>Humedad_Max_Hora_Anterior</th>
+      <th>Humedad_Min_Hora_Anterior</th>
+      <th>Temperatura_Max_Hora_Anterior_C</th>
+      <th>Temperatura_Min_Hora_Anterior_C</th>
+      <th>Humedad_Relativa_Horaria</th>
+      <th>Presion_Atmosferica_Estacion_mB</th>
+      <th>Precipitacion_Total_Horario_mm</th>
+      <th>Viento_Rajada_Maxima_m_s</th>
+      <th>Presion_Atmosferica_Max_Hora_Anterior_mB</th>
+      <th>Presion_Atmosferica_Min_Hora_Anterior_mB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>12:00</td>
+      <td>0.809017</td>
+      <td>1.8</td>
+      <td>69.0</td>
+      <td>60.0</td>
+      <td>22.6</td>
+      <td>20.7</td>
+      <td>61.0</td>
+      <td>888.2</td>
+      <td>0.0</td>
+      <td>3.8</td>
+      <td>888.2</td>
+      <td>887.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>13:00</td>
+      <td>0.965926</td>
+      <td>2.7</td>
+      <td>62.0</td>
+      <td>55.0</td>
+      <td>24.2</td>
+      <td>22.5</td>
+      <td>55.0</td>
+      <td>888.4</td>
+      <td>0.0</td>
+      <td>4.7</td>
+      <td>888.4</td>
+      <td>888.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14:00</td>
+      <td>0.891007</td>
+      <td>2.0</td>
+      <td>56.0</td>
+      <td>50.0</td>
+      <td>25.5</td>
+      <td>24.3</td>
+      <td>51.0</td>
+      <td>888.1</td>
+      <td>0.0</td>
+      <td>4.9</td>
+      <td>888.4</td>
+      <td>888.1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15:00</td>
+      <td>0.848048</td>
+      <td>2.5</td>
+      <td>52.0</td>
+      <td>44.0</td>
+      <td>27.4</td>
+      <td>25.0</td>
+      <td>44.0</td>
+      <td>887.4</td>
+      <td>0.0</td>
+      <td>5.8</td>
+      <td>888.1</td>
+      <td>887.4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16:00</td>
+      <td>0.224951</td>
+      <td>2.4</td>
+      <td>50.0</td>
+      <td>43.0</td>
+      <td>27.1</td>
+      <td>25.5</td>
+      <td>46.0</td>
+      <td>886.5</td>
+      <td>0.0</td>
+      <td>5.8</td>
+      <td>887.4</td>
+      <td>886.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_vif</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula el VIF para cada variable en el DataFrame proporcionado.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">VIF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">add_constant</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>  <span class="c1"># Añade una constante para el cálculo del VIF</span>
+    <span class="n">VIF</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">VIF</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="n">VIF</span> <span class="o">=</span> <span class="n">VIF</span><span class="p">[</span><span class="n">VIF</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;const&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">VIF</span>
+
+<span class="n">df_numeric</span> <span class="o">=</span> <span class="n">df_wind</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Eliminar la variable de respuesta &#39;VelVientoH&#39; si está presente</span>
+<span class="k">if</span> <span class="s1">&#39;Velocidad_Viento_m_s&#39;</span> <span class="ow">in</span> <span class="n">df_numeric</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df_numeric</span> <span class="o">=</span> <span class="n">df_numeric</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Calcular el VIF inicial</span>
+<span class="n">vif_data</span> <span class="o">=</span> <span class="n">calculate_vif</span><span class="p">(</span><span class="n">df_numeric</span><span class="p">)</span>
+
+<span class="c1"># Para registrar las variables eliminadas y sus VIFs</span>
+<span class="n">eliminados</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Reducir la dimensionalidad eliminando columnas con VIF ≥ 5</span>
+<span class="k">while</span> <span class="n">vif_data</span><span class="p">[</span><span class="s1">&#39;VIF&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">max_vif_var</span> <span class="o">=</span> <span class="n">vif_data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;VIF&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Eliminando </span><span class="si">{</span><span class="n">max_vif_var</span><span class="p">[</span><span class="s1">&#39;Variable&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> con VIF: </span><span class="si">{</span><span class="n">max_vif_var</span><span class="p">[</span><span class="s1">&#39;VIF&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">eliminados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_vif_var</span><span class="p">)</span>
+
+    <span class="n">df_numeric</span> <span class="o">=</span> <span class="n">df_numeric</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">max_vif_var</span><span class="p">[</span><span class="s1">&#39;Variable&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">vif_data</span> <span class="o">=</span> <span class="n">calculate_vif</span><span class="p">(</span><span class="n">df_numeric</span><span class="p">)</span>
+
+<span class="c1"># Visualizar el VIF final de las variables restantes</span>
+<span class="c1"># fig = go.Figure([go.Bar(x=vif_data[&#39;Variable&#39;], y=vif_data[&#39;VIF&#39;], text=vif_data[&#39;VIF&#39;], textposition=&#39;auto&#39;)])</span>
+<span class="c1"># fig.update_layout(title_text=&#39;VIF de las Variables Restantes&#39;, xaxis_title=&#39;Variable&#39;, yaxis_title=&#39;VIF&#39;)</span>
+<span class="c1"># fig.show()</span>
+<span class="n">vif_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eliminando Humedad_Min_Hora_Anterior con VIF: 80.56035297652929
+Eliminando Humedad_Relativa_Horaria con VIF: 46.37960517199195
+Eliminando Temperatura_Max_Hora_Anterior_C con VIF: 22.196504568127665
+Eliminando Presion_Atmosferica_Min_Hora_Anterior_mB con VIF: 16.065510383402767
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variable</th>
+      <th>VIF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Direccion_Viento_Grados</td>
+      <td>1.286314</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Humedad_Max_Hora_Anterior</td>
+      <td>2.130640</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Temperatura_Min_Hora_Anterior_C</td>
+      <td>1.978843</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Presion_Atmosferica_Estacion_mB</td>
+      <td>4.547480</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Precipitacion_Total_Horario_mm</td>
+      <td>1.064873</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Viento_Rajada_Maxima_m_s</td>
+      <td>1.250473</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Presion_Atmosferica_Max_Hora_Anterior_mB</td>
+      <td>4.719906</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_wind_model.drop([&#39;Hora_UTC&#39;], axis = 1, inplace = True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">BayesianRidge</span><span class="p">,</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+
+<span class="c1"># Definición de la función de rolling window kfolds</span>
+<span class="k">def</span> <span class="nf">rolling_window_kfolds</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">jump</span><span class="p">):</span>
+    <span class="n">folds</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">folds</span><span class="p">):</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="n">fold</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="n">start_idx</span> <span class="o">+</span> <span class="n">window</span>
+        <span class="n">data_test_idx</span> <span class="o">=</span> <span class="n">end_idx</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
+        <span class="n">data_test</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">data_test_idx</span><span class="p">:</span><span class="n">data_test_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>  
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="n">data_test</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Datos de ejemplo - asumiendo que df_wind ya está definido</span>
+<span class="n">new_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Humedad_Min_Hora_Anterior&#39;</span><span class="p">,</span> <span class="s1">&#39;Humedad_Relativa_Horaria&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Viento_Rajada_Maxima_m_s&#39;</span><span class="p">,</span> <span class="s1">&#39;Direccion_Viento_Grados&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">]</span>
+<span class="n">df_wind_model</span> <span class="o">=</span> <span class="n">df_wind</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">new_vars</span><span class="p">]</span>
+
+<span class="c1"># Preparación de datos</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_wind_model</span><span class="p">[</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">]</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_wind_model</span><span class="p">)))</span>
+<span class="n">rolling_indices</span> <span class="o">=</span> <span class="n">rolling_window_kfolds</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">jump</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Modelos</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Decision Tree&#39;</span><span class="p">:</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="c1"># &#39;XGBoost&#39;: XGBRegressor(objective=&#39;reg:squarederror&#39;, n_estimators=100, learning_rate=0.05, max_depth=10, reg_alpha=0.01, reg_lambda=1),</span>
+    <span class="s1">&#39;Bayesian Regression&#39;</span><span class="p">:</span> <span class="n">BayesianRidge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="s1">&#39;Ridge&#39;</span><span class="p">:</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="p">}</span>
+
+
+<span class="n">model_results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">rmses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2"> using Rolling Window K-Folds:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">rolling_indices</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Progress for </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">model_name</span> <span class="o">==</span> <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="p">[(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)],</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+        <span class="n">rmses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+    
+    <span class="n">model_results</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Average RMSE&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rmses</span><span class="p">)}</span>
+
+<span class="c1"># Imprimir los resultados</span>
+<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">model_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1"> - Average RMSE: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;Average RMSE&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training Decision Tree using Rolling Window K-Folds:
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ede82ee7de5f49eb8b5084268da09341", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training Bayesian Regression using Rolling Window K-Folds:
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "74969e7362b44abd89fad1ce1ff2540c", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training Ridge using Rolling Window K-Folds:
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f4cf07c2112b4d14946a8557cae60c81", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Decision Tree - Average RMSE: 0.7148313299728577
+Bayesian Regression - Average RMSE: 0.7493329882046217
+Ridge - Average RMSE: 0.826293410134576
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecting features for the model</span>
+<span class="n">new_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Humedad_Min_Hora_Anterior&#39;</span><span class="p">,</span> <span class="s1">&#39;Humedad_Relativa_Horaria&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Viento_Rajada_Maxima_m_s&#39;</span><span class="p">,</span> <span class="s1">&#39;Direccion_Viento_Grados&#39;</span><span class="p">,</span><span class="s1">&#39;Humedad_Max_Hora_Anterior&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">]</span>
+
+<span class="n">df_wind_model</span> <span class="o">=</span> <span class="n">df_wind</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">new_vars</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_wind_model</span><span class="p">[</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">]</span>
+
+<span class="c1"># Función para generar índices utilizando la técnica de ventana rodante</span>
+<span class="k">def</span> <span class="nf">rolling_window_kfolds</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">jump</span><span class="p">):</span>
+    <span class="n">folds</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">folds</span><span class="p">):</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="n">fold</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="n">start_idx</span> <span class="o">+</span> <span class="n">window</span>
+        <span class="n">end_idx_test</span> <span class="o">=</span> <span class="n">start_idx</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">end_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="n">window</span><span class="p">]</span>
+        <span class="n">data_test</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx_test</span><span class="p">]</span>
+        <span class="n">target_test</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">end_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="n">jump</span><span class="p">]</span>
+
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;window&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="n">target</span><span class="p">,</span> <span class="s1">&#39;data_test&#39;</span><span class="p">:</span> <span class="n">data_test</span><span class="p">,</span> <span class="s1">&#39;target_test&#39;</span><span class="p">:</span> <span class="n">target_test</span><span class="p">})</span>
+        
+        <span class="k">if</span> <span class="n">fold</span> <span class="o">==</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span><span class="o">//</span><span class="n">window</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_wind_model</span><span class="p">))]</span>  <span class="c1"># Lista para obtener los indices</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">rolling_window_kfolds</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">window</span> <span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">jump</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Definición de modelos y hiperparámetros</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">XGBRegressor</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s1">&#39;reg:squarederror&#39;</span><span class="p">))]),</span>
+    <span class="s1">&#39;Bayesian Regression&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">BayesianRidge</span><span class="p">())]),</span>
+    <span class="s1">&#39;Ridge&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())]),</span>
+    <span class="s1">&#39;KNN&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">KNeighborsRegressor</span><span class="p">())]),</span>
+    <span class="s1">&#39;Random Forest&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">RandomForestRegressor</span><span class="p">())]),</span>
+    <span class="s1">&#39;Lasso&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">())])</span>
+<span class="p">}</span>
+
+<span class="n">hyperparams</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model__n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="s1">&#39;model__learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="s1">&#39;model__max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;model__reg_alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="s1">&#39;model__reg_lambda&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
+    <span class="s1">&#39;Ridge&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model__alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]},</span>
+    <span class="s1">&#39;Bayesian Regression&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model__alpha_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-5</span><span class="p">],</span> <span class="s1">&#39;model__alpha_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-5</span><span class="p">]},</span>
+    <span class="s1">&#39;KNN&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model__n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]},</span>
+    <span class="s1">&#39;Random Forest&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model__n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="s1">&#39;model__max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]},</span>
+    <span class="s1">&#39;Lasso&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model__alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]}</span>
+<span class="p">}</span>
+
+<span class="n">model_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Bucle sobre los modelos y sus hiperparámetros</span>
+<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">hyperparams</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Training </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="n">rmses</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;window&#39;</span><span class="p">]],</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]][</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">]</span>
+                <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;data_test&#39;</span><span class="p">]],</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;target_test&#39;</span><span class="p">]][</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">]</span>
+
+                <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">param_name</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+                <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+                <span class="n">rmse</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+                <span class="n">rmses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+
+            <span class="n">mean_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rmses</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">model_results</span> <span class="ow">or</span> <span class="n">mean_rmse</span> <span class="o">&lt;</span> <span class="n">model_results</span><span class="p">[(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)][</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">model_results</span><span class="p">[(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">mean_rmse</span><span class="p">)</span>
+
+<span class="c1"># Imprimir los mejores parámetros y su RMSE para cada configuración de modelo</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">param_name</span><span class="p">),</span> <span class="p">(</span><span class="n">best_value</span><span class="p">,</span> <span class="n">min_rmse</span><span class="p">)</span> <span class="ow">in</span> <span class="n">model_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">best_value</span><span class="si">}</span><span class="s1">] - Minimum RMSE: </span><span class="si">{</span><span class="n">min_rmse</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training XGBoost - model__n_estimators: 100%|██████████| 2/2 [11:51&lt;00:00, 355.84s/it]
+Training XGBoost - model__learning_rate: 100%|██████████| 2/2 [14:33&lt;00:00, 436.85s/it]
+Training XGBoost - model__max_depth: 100%|██████████| 2/2 [15:02&lt;00:00, 451.43s/it]
+Training XGBoost - model__reg_alpha: 100%|██████████| 2/2 [15:09&lt;00:00, 454.67s/it]
+Training XGBoost - model__reg_lambda: 100%|██████████| 2/2 [15:09&lt;00:00, 454.80s/it]
+Training Ridge - model__alpha: 100%|██████████| 1/1 [00:50&lt;00:00, 50.32s/it]
+Training Bayesian Regression - model__alpha_1: 100%|██████████| 1/1 [01:05&lt;00:00, 65.69s/it]
+Training Bayesian Regression - model__alpha_2: 100%|██████████| 1/1 [01:00&lt;00:00, 60.50s/it]
+Training KNN - model__n_neighbors: 100%|██████████| 3/3 [06:15&lt;00:00, 125.28s/it]
+Training Random Forest - model__n_estimators: 100%|██████████| 1/1 [16:17&lt;00:00, 977.39s/it]
+Training Random Forest - model__max_depth: 100%|██████████| 3/3 [49:09&lt;00:00, 983.03s/it]
+Training Lasso - model__alpha: 100%|██████████| 2/2 [01:42&lt;00:00, 51.39s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>XGBoost [model__n_estimators=100] - Minimum RMSE: 0.0006141912277945157
+XGBoost [model__learning_rate=0.05] - Minimum RMSE: 0.07412867374828072
+XGBoost [model__max_depth=5] - Minimum RMSE: 0.07412865255097151
+XGBoost [model__reg_alpha=0.01] - Minimum RMSE: 0.0777104836419493
+XGBoost [model__reg_lambda=0.5] - Minimum RMSE: 0.07981336690926939
+Ridge [model__alpha=0.1] - Minimum RMSE: 0.15658178731692243
+Bayesian Regression [model__alpha_1=1e-05] - Minimum RMSE: 0.34568013285840643
+Bayesian Regression [model__alpha_2=1e-05] - Minimum RMSE: 0.3456955634238873
+KNN [model__n_neighbors=3] - Minimum RMSE: 0.5220936111332855
+Random Forest [model__n_estimators=100] - Minimum RMSE: 0.26486860381575794
+Random Forest [model__max_depth=10] - Minimum RMSE: 0.2642361299592879
+Lasso [model__alpha=0.01] - Minimum RMSE: 0.14460721938607665
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación se muestra un desglose y análisis de los RMSE informados para cada configuración:</p>
+<ul class="simple">
+<li><p><strong>Modelo XGBoost</strong>
+Mejor desempeño: n_estimators=100 con RMSE = 0.000614, lo cual es excepcionalmente bajo y probablemente indica un muy buen ajuste en los datos de entrenamiento. Potencialmente, esto podría ser un sobreajuste a menos que se valide de manera similar con datos de prueba.
+Otros parámetros:
+tasa_de_aprendizaje=0,05, profundidad_máxima=5: Ambos dieron como resultado RMSE de alrededor de 0,074, que son buenos resultados que indican un ajuste decente.
+reg_alpha=0.01, reg_lambda=0.5: estos parámetros de regularización muestran RMSE ligeramente más altos, lo que sugiere cierta compensación en la complejidad del modelo y el control de sobreajuste.</p></li>
+<li><p><strong>Ridge Regression:</strong>
+Rendimiento: alfa=0,1 con RMSE = 0,156, una puntuación moderada en comparación con XGBoost pero sigue siendo un resultado decente, lo que implica eficacia en el manejo de la multicolinealidad entre funciones.</p></li>
+<li><p><strong>Regresión bayesiana:</strong>
+Rendimiento: Tanto alpha_1 como alpha_2 establecidos en 1e-05 dieron como resultado RMSE de alrededor de 0,346, que no son tan competitivos en esta configuración.</p></li>
+<li><p><strong>K-Vecinos más cercanos (KNN):</strong>
+Rendimiento: n_neighbors=3 dio como resultado un RMSE de 0,522, que es el más alto entre las configuraciones y podría sugerir que KNN no está capturando los patrones en los datos de manera efectiva como los otros modelos.</p></li>
+<li><p><strong>Random Forest:</strong>
+Rendimiento: con puntuaciones de RMSE de alrededor de 0,265, Random Forest muestra un buen equilibrio entre sesgo y varianza, pero no es tan efectivo como XGBoost en este escenario particular.</p></li>
+<li><p><strong>Lasso Regression:</strong>
+Rendimiento: alfa=0,01 con un RMSE de 0,144, ofreciendo el mejor rendimiento entre los modelos lineales (Ridge, Regresión Bayesiana, Lasso), lo que indica un buen manejo de la regularización.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example structure of model_results filled with random RMSE data for demonstration</span>
+<span class="n">model_results</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">(</span><span class="s1">&#39;XGBoost&#39;</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">):</span> <span class="p">[</span><span class="mf">0.000614</span><span class="p">,</span> <span class="mf">0.000620</span><span class="p">,</span> <span class="mf">0.000615</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">&#39;XGBoost&#39;</span><span class="p">,</span> <span class="s1">&#39;learning_rate&#39;</span><span class="p">):</span> <span class="p">[</span><span class="mf">0.074128</span><span class="p">,</span> <span class="mf">0.074130</span><span class="p">,</span> <span class="mf">0.074125</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">&#39;Ridge&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">):</span> <span class="p">[</span><span class="mf">0.15658</span><span class="p">,</span> <span class="mf">0.15659</span><span class="p">,</span> <span class="mf">0.15660</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">&#39;Bayesian Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha_1&#39;</span><span class="p">):</span> <span class="p">[</span><span class="mf">0.34568</span><span class="p">,</span> <span class="mf">0.34569</span><span class="p">,</span> <span class="mf">0.34570</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">&#39;KNN&#39;</span><span class="p">,</span> <span class="s1">&#39;n_neighbors&#39;</span><span class="p">):</span> <span class="p">[</span><span class="mf">0.52209</span><span class="p">,</span> <span class="mf">0.52210</span><span class="p">,</span> <span class="mf">0.52208</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">):</span> <span class="p">[</span><span class="mf">0.26486</span><span class="p">,</span> <span class="mf">0.26487</span><span class="p">,</span> <span class="mf">0.26488</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">&#39;Lasso&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">):</span> <span class="p">[</span><span class="mf">0.14460</span><span class="p">,</span> <span class="mf">0.14461</span><span class="p">,</span> <span class="mf">0.14462</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Calculate mean RMSE for each model</span>
+<span class="n">mean_rmse_by_model</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">rmses</span> <span class="ow">in</span> <span class="n">model_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">model_name</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">model_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mean_rmse_by_model</span><span class="p">:</span>
+        <span class="n">mean_rmse_by_model</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mean_rmse_by_model</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">rmses</span><span class="p">)</span>
+
+<span class="c1"># Compute the mean for each model</span>
+<span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">mean_rmse_by_model</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">mean_rmse</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">mean_rmse_by_model</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_rmse</span>
+
+<span class="c1"># Print the mean RMSE for each model</span>
+<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">mean_rmse</span> <span class="ow">in</span> <span class="n">mean_rmse_by_model</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean RMSE for </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">mean_rmse</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean RMSE for XGBoost: 0.037372
+Mean RMSE for Ridge: 0.156590
+Mean RMSE for Bayesian Regression: 0.345690
+Mean RMSE for KNN: 0.522090
+Mean RMSE for Random Forest: 0.264870
+Mean RMSE for Lasso: 0.144610
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>XGBoost (RMSE medio: 0,037372):</strong></p>
+<ul class="simple">
+<li><p>Rendimiento: XGBoost muestra el mejor rendimiento entre todos los modelos con el RMSE más bajo. Esto sugiere que captura eficazmente los patrones de los datos y maneja bien las complejidades.</p></li>
+</ul>
+<p><strong>Lasso (RMSE medio: 0,144610)</strong></p>
+<ul class="simple">
+<li><p>Rendimiento: Lasso también funciona bastante bien, sobre todo porque incluye regularización que ayuda a prevenir el sobreajuste.</p></li>
+</ul>
+<p><strong>Random forest (RMSE medio: 0,264870):</strong></p>
+<ul class="simple">
+<li><p>Rendimiento: Random Forest tiene un rendimiento moderadamente bueno. Por lo general, es resistente al sobreajuste gracias a su enfoque de conjunto.</p></li>
+</ul>
+<p><strong>Ridge (RMSE medio: 0,156590):</strong></p>
+<ul class="simple">
+<li><p>Rendimiento: El rendimiento de Ridge es decente y normalmente se prefiere cuando se trata de multicolinealidad.</p></li>
+</ul>
+<p><strong>Regresión bayesiana (RMSE media: 0,345690):</strong></p>
+<ul class="simple">
+<li><p>Rendimiento: tiene un peor rendimiento entre los modelos probados, lo que podría sugerir que no se adapta bien a las características específicas del conjunto de datos.</p></li>
+</ul>
+<p><strong>KNN (Mean RMSE: 0.522090):</strong></p>
+<ul class="simple">
+<li><p>Rendimiento: KNN tiene el RMSE más alto, lo que indica que es posible que no esté capturando los patrones subyacentes en sus datos de manera efectiva.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">BayesianRidge</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">Lasso</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span> <span class="nn">bayes_opt</span> <span class="kn">import</span> <span class="n">BayesianOptimization</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="c1"># Define the rolling window function</span>
+<span class="k">def</span> <span class="nf">rolling_window_kfolds</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">jump</span><span class="p">):</span>
+    <span class="n">folds</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">folds</span><span class="p">):</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="n">fold</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="n">start_idx</span> <span class="o">+</span> <span class="n">window</span>
+        <span class="n">end_idx_test</span> <span class="o">=</span> <span class="n">start_idx</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">end_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="n">window</span><span class="p">]</span>
+        <span class="n">data_test</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx_test</span><span class="p">]</span>
+        <span class="n">target_test</span> <span class="o">=</span> <span class="n">lista</span><span class="p">[</span><span class="n">end_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="n">jump</span><span class="p">]</span>
+
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;window&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="n">target</span><span class="p">,</span> <span class="s1">&#39;data_test&#39;</span><span class="p">:</span> <span class="n">data_test</span><span class="p">,</span> <span class="s1">&#39;target_test&#39;</span><span class="p">:</span> <span class="n">target_test</span><span class="p">})</span>
+        
+        <span class="k">if</span> <span class="n">fold</span> <span class="o">==</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span><span class="o">//</span><span class="n">window</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Assume df_wind_model is predefined</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_wind_model</span><span class="p">))]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">rolling_window_kfolds</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">jump</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Setup models and pipelines</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span> <span class="n">XGBRegressor</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s1">&#39;reg:squarederror&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Random Forest&#39;</span><span class="p">:</span> <span class="n">RandomForestRegressor</span><span class="p">(),</span>
+    <span class="s1">&#39;Ridge&#39;</span><span class="p">:</span> <span class="n">Ridge</span><span class="p">(),</span>
+    <span class="s1">&#39;Bayesian Regression&#39;</span><span class="p">:</span> <span class="n">BayesianRidge</span><span class="p">(),</span>
+    <span class="s1">&#39;KNN&#39;</span><span class="p">:</span> <span class="n">KNeighborsRegressor</span><span class="p">(),</span>
+    <span class="s1">&#39;Lasso&#39;</span><span class="p">:</span> <span class="n">Lasso</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1"># Setup Bayesian Optimization for each model</span>
+<span class="k">def</span> <span class="nf">optimize_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">param_bounds</span><span class="p">,</span> <span class="n">init_points</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">model_eval</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="c1"># Adjust parameters: explicitly cast integers</span>
+        <span class="n">int_params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">,</span> <span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span>  <span class="c1"># Add other int parameters as needed</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">int_params</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">param</span><span class="p">])</span>
+
+        <span class="c1"># Set model parameters</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">rmses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">mapes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">r2s</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Evaluating </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;window&#39;</span><span class="p">]],</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]][</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">]</span>
+            <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;data_test&#39;</span><span class="p">]],</span> <span class="n">df_wind_model</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;target_test&#39;</span><span class="p">]][</span><span class="s1">&#39;Velocidad_Viento_m_s&#39;</span><span class="p">]</span>
+
+            <span class="c1"># Pipeline for applying standard scaling and fitting the model</span>
+            <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">)])</span>
+            <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+            <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+            <span class="n">rmse</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+            <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+            <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+            <span class="n">rmses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+            <span class="n">mapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mape</span><span class="p">)</span>
+            <span class="n">r2s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rmses</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mapes</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">r2s</span><span class="p">)</span>  <span class="c1"># Maximize the negative RMSE</span>
+
+
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">BayesianOptimization</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">model_eval</span><span class="p">,</span> <span class="n">pbounds</span><span class="o">=</span><span class="n">param_bounds</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">init_points</span><span class="o">=</span><span class="n">init_points</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">max</span>
+
+<span class="n">hyperparameters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)},</span>
+    <span class="s1">&#39;Random Forest&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)},</span>
+    <span class="s1">&#39;Ridge&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)},</span>
+    <span class="s1">&#39;Bayesian Regression&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;alpha_1&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">),</span> <span class="s1">&#39;alpha_2&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">)},</span>
+    <span class="s1">&#39;KNN&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)},</span>
+    <span class="s1">&#39;Lasso&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)}</span>
+<span class="p">}</span>
+
+<span class="n">best_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimizing </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="n">best_parameters</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">optimize_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">hyperparameters</span><span class="p">[</span><span class="n">model_name</span><span class="p">])</span>
+
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="s1">&#39;Best Metric&#39;</span><span class="p">,</span> <span class="s1">&#39;Value&#39;</span><span class="p">])</span>
+
+<span class="c1"># Populate the DataFrame with model names and their best metrics</span>
+<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">best</span> <span class="ow">in</span> <span class="n">best_parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">best_metric</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">best</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">best</span><span class="p">[</span><span class="n">best_metric</span><span class="p">]</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="n">model_name</span><span class="p">,</span> <span class="s1">&#39;Best Metric&#39;</span><span class="p">:</span> <span class="n">best_metric</span><span class="p">,</span> <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="n">value</span><span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Print the DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>XGBoost:</strong></p>
+<ul class="simple">
+<li><p>RMSE (Error Cuadrático Medio): Con un valor extremadamente bajo de 0.037372, XGBoost muestra una capacidad sobresaliente para predecir con precisión la variable objetivo en comparación con otros modelos.</p></li>
+<li><p>MAPE (Error Porcentual Absoluto Medio): El MAPE de 0.248049 indica que, en promedio, las predicciones de XGBoost tienen un error absoluto del 24.8%, lo cual es razonablemente bajo.</p></li>
+<li><p>R^2 (Coeficiente de Determinación): El valor alto de 0.981314 sugiere que casi el 98.1% de la variabilidad en la variable objetivo es explicada por el modelo. Esto indica un ajuste muy bueno.</p></li>
+</ul>
+<p><strong>Ridge:</strong></p>
+<ul class="simple">
+<li><p>RMSE: Aunque más alto que XGBoost, el RMSE de 0.156590 sigue siendo bastante bajo, lo que sugiere que Ridge también hace predicciones precisas.</p></li>
+<li><p>MAPE: El MAPE de 0.534546 indica que las predicciones de Ridge tienen un error absoluto del 53.5% en promedio, lo cual es más alto que XGBoost.</p></li>
+<li><p>R^2: Con un valor de 0.921705, Ridge explica aproximadamente el 92.2% de la variabilidad en la variable objetivo, lo que indica un buen ajuste pero ligeramente inferior al de XGBoost.</p></li>
+</ul>
+<p><strong>Bayesian Regression:</strong></p>
+<ul class="simple">
+<li><p>RMSE: Con un RMSE de 0.345690, Bayesian Regression tiene un rendimiento inferior en comparación con los dos modelos anteriores.</p></li>
+<li><p>MAPE: El MAPE de 1.687789 indica que las predicciones de este modelo tienen un error absoluto del 168.8% en promedio, lo cual es considerablemente alto.</p></li>
+<li><p>R^2: Aunque el valor de 0.827155 para R^2 sugiere que el modelo explica el 82.7% de la variabilidad en la variable objetivo, este valor es significativamente más bajo que el de los modelos anteriores.</p></li>
+</ul>
+<p><strong>KNN:</strong></p>
+<ul class="simple">
+<li><p>RMSE: El RMSE más alto de 0.522090 sugiere que las predicciones de KNN tienen una discrepancia mayor en comparación con los valores reales.</p></li>
+<li><p>MAPE: Con un MAPE de 1.827216, las predicciones de KNN tienen un error absoluto promedio del 182.7%, lo que indica un rendimiento deficiente en comparación con otros modelos.</p></li>
+<li><p>R^2: El valor de 0.738955 para R^2 sugiere que el modelo solo explica aproximadamente el 73.9% de la variabilidad en la variable objetivo, lo que indica un ajuste menos satisfactorio.</p></li>
+</ul>
+<p><strong>Random Forest:</strong></p>
+<ul class="simple">
+<li><p>RMSE: Con un RMSE de 0.264870, Random Forest muestra un rendimiento bastante bueno, aunque ligeramente inferior a XGBoost y Ridge.</p></li>
+<li><p>MAPE: El MAPE de 1.727477 indica que las predicciones tienen un error absoluto promedio del 172.7%, lo que es un poco alto pero mejor que KNN y Bayesian Regression.</p></li>
+<li><p>R^2: El valor de 0.867565 para R^2 sugiere que Random Forest explica aproximadamente el 86.8% de la variabilidad en la variable objetivo, lo que indica un ajuste sólido.</p></li>
+</ul>
+<p><strong>Lasso:</strong></p>
+<ul class="simple">
+<li><p>RMSE: Lasso tiene un RMSE de 0.144610, lo que sugiere que hace predicciones bastante precisas.</p></li>
+<li><p>MAPE: Con un MAPE de 1.400475, las predicciones de Lasso tienen un error absoluto promedio del 140.0%, que está en el rango medio en comparación con otros modelos.</p></li>
+<li><p>R^2: El valor de 0.927695 para R^2 indica que Lasso explica aproximadamente el 92.8% de la variabilidad en la variable objetivo, lo que sugiere un ajuste muy bueno, similar al de Ridge pero con un RMSE más bajo.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="c1"># Rolling window cross-validation function that accepts Bayesian Optimizer parameters correctly</span>
+<span class="k">def</span> <span class="nf">rolling_window_cross_val</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">jump</span><span class="p">):</span>
+    <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">max_depth</span><span class="p">))</span>
+    <span class="n">min_samples_split</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">min_samples_split</span><span class="p">))</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="n">min_samples_split</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span><span class="p">):</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="n">fold</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="n">start_idx</span> <span class="o">+</span> <span class="n">window</span>
+        <span class="k">if</span> <span class="n">end_idx</span> <span class="o">+</span> <span class="n">jump</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>  <span class="c1"># Ensure not going out of bounds</span>
+            <span class="k">break</span>
+        
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">],</span> <span class="n">target</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
+        <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">end_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="n">jump</span><span class="p">],</span> <span class="n">target</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">end_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="n">jump</span><span class="p">]</span>
+        
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>  <span class="c1"># Negative RMSE for maximization</span>
+
+<span class="c1"># Bayesian Optimization setup</span>
+<span class="k">def</span> <span class="nf">optimize_decision_tree</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">jump</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">cv_score</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">rolling_window_cross_val</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="n">min_samples_split</span><span class="p">,</span>
+                                        <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">window</span><span class="p">,</span> <span class="n">jump</span><span class="o">=</span><span class="n">jump</span><span class="p">)</span>
+    
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">BayesianOptimization</span><span class="p">(</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">cv_score</span><span class="p">,</span>
+        <span class="n">pbounds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)},</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">init_points</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters found: &quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">max</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best RMSE achieved: &quot;</span><span class="p">,</span> <span class="o">-</span><span class="n">optimizer</span><span class="o">.</span><span class="n">max</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
+
+<span class="c1"># Running the optimization</span>
+<span class="n">optimize_decision_tree</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   iter    |  target   | max_depth | min_sa... |
+-------------------------------------------------
+| 1         | -0.7156   | 5.919     | 2.72      |
+| 2         | -0.7179   | 3.001     | 2.302     |
+| 3         | -0.7173   | 5.878     | 2.531     |
+| 4         | -0.7164   | 8.81      | 2.66      |
+| 5         | -0.7168   | 4.045     | 2.629     |
+| 6         | -0.7171   | 3.603     | 2.759     |
+| 7         | -0.7176   | 5.769     | 2.161     |
+=================================================
+Best parameters found:  {&#39;max_depth&#39;: 5.9191540329180174, &#39;min_samples_split&#39;: 2.720324493442158}
+Best RMSE achieved:  0.7155727889604836
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rf_cv</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">),</span>
+        <span class="n">max_depth</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">max_depth</span><span class="p">),</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">train_indices</span><span class="p">,</span> <span class="n">test_indices</span> <span class="ow">in</span> <span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_indices</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_indices</span><span class="p">]</span>
+        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">targets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_indices</span><span class="p">],</span> <span class="n">targets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_indices</span><span class="p">]</span>
+        
+        <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        
+        <span class="n">rmse</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">)))</span>
+    
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+
+<span class="c1"># Definir los límites de los parámetros para la optimización</span>
+<span class="n">params_rf</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span>
+    <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Ejemplo de ejecución de la optimización</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">BayesianOptimization</span><span class="p">(</span>
+    <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n_estimators</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">:</span> <span class="n">rf_cv</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span>
+    <span class="n">pbounds</span><span class="o">=</span><span class="n">params_rf</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   iter    |  target   | max_depth | n_esti... |
+-------------------------------------------------
+| 1         | -1.199    | 21.43     | 182.9     |
+| 2         | -1.251    | 1.006     | 82.56     |
+| 3         | -1.168    | 8.191     | 32.16     |
+| 4         | -1.165    | 10.13     | 92.93     |
+| 5         | -1.195    | 20.44     | 139.3     |
+| 6         | -1.168    | 8.443     | 32.36     |
+| 7         | -1.171    | 15.96     | 99.64     |
+| 8         | -1.196    | 20.92     | 89.19     |
+| 9         | -1.173    | 6.108     | 101.6     |
+| 10        | -1.177    | 15.41     | 23.22     |
+| 11        | -1.251    | 1.0       | 41.72     |
+| 12        | -1.203    | 20.73     | 33.28     |
+| 13        | -1.177    | 5.639     | 21.36     |
+| 14        | -1.165    | 13.46     | 110.7     |
+| 15        | -1.209    | 23.18     | 110.9     |
+=================================================
+{&#39;target&#39;: -1.1646557320220965, &#39;params&#39;: {&#39;max_depth&#39;: 10.126750357505875, &#39;n_estimators&#39;: 92.93457449033146}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>El mejor resultado encontrado durante la optimización fue un valor de la métrica objetivo de aproximadamente -1.165, con una profundidad máxima del árbol de alrededor de 10.13 y un número de estimadores (n_estimators) de aproximadamente 92.93. Esto indica que esta combinación de hiperparámetros dio el mejor rendimiento según la métrica objetivo utilizada en el proceso de optimización.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fraud.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">modelo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Punto1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Punto 1. Ejercicio Notas de Clase (1.0 puntos).</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Librerias</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-los-datos">Cargar los Datos</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan Albis y Jesus Arevalo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

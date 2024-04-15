@@ -1,0 +1,2325 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Punto 2.Análisis Exploratorio de Datos (1.0 puntos). &#8212; Machine Learning Parcial 2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Punto2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Punto 1. Ejercicio Notas de Clase (1.0 puntos)." href="Punto1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Machine Learning Parcial 2 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Machine Learning Parcial 2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Machine Learning Parcial 2
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="fraud.html">modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wind.html">Librerias</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Punto1.html"><strong>Punto 1. Ejercicio Notas de Clase (1.0 puntos).</strong></a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Punto 2.Análisis Exploratorio de Datos (1.0 puntos).</strong></a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPunto2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Punto2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Punto 2.Análisis Exploratorio de Datos (1.0 puntos).</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Punto 2.Análisis Exploratorio de Datos (1.0 puntos).</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#windspeed"><strong>WindSpeed:</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#liberias"><strong>Liberias:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-datos"><strong>Importacion de datos:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio"><strong>Analisis Exploratorio:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-de-los-datos"><strong>Estrutura de los datos:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano"><strong>Tamaño:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conteo-de-nulos"><strong>Conteo de nulos:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables"><strong>Variables:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renombre-de-las-columndas-del-dataframe"><strong>Renombre de las Columndas del Dataframe:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-en-el-formato"><strong>Cambio en el formato:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary"><strong>Summary:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion"><strong>Visualizacion:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histograma"><strong>Histograma:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplot"><strong>Boxplot:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot"><strong>ScatterPlot:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regplot"><strong>RegPlot:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlacion-entre-variables"><strong>Correlacion entre variables:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduccion-de-dimensiones"><strong>Reduccion de dimensiones:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-modelos"><strong>Comparacion de modelos:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-los-datos"><strong>Preparacion de los datos:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento"><strong>Entrenamiento:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-de-modelos"><strong>Evaluacion de modelos:</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fraud-detection"><strong>Fraud Detection</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Importacion de datos:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Estrutura de los datos:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Tamaño:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Conteo de nulos:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion-de-datos-faltantes-usando-la-mediana"><strong>imputacion de datos faltantes usando la mediana:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-de-nulos-post-imputacion"><strong>Revision de nulos post imputacion:</strong></a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="punto-2-analisis-exploratorio-de-datos-1-0-puntos">
+<h1><strong>Punto 2.Análisis Exploratorio de Datos (1.0 puntos).</strong><a class="headerlink" href="#punto-2-analisis-exploratorio-de-datos-1-0-puntos" title="Link to this heading">#</a></h1>
+<p>Dado los siguientes conjuntos de datos: <strong>Wind Speed</strong> y <strong>Fraud Detection</strong>, realizar un análisis exploratorio de datos el cual incluya lo siguiente:</p>
+<ul class="simple">
+<li><p>Descripción de tipos de variables, reducción de nombres extensos en columnas, calcular número de observaciones, media, desviación estándar, mínimo, máximo, cuartiles, realizar conteo de
+datos faltantes y su porcentaje, histograma o diagrama de barras para la variable respuesta e independientes según corresponda, seleccionar un mínimo de 4 variables independientes. Análisis
+de simetría, datos atípicos y dispersión, etc,… por medio de <strong>boxplot()</strong>. Análisis bivariado. Trazado de <strong>scatterplot()</strong> y <strong>regplot()</strong> para un mínimo de 4 pares de variables explicativas. En cada
+figura agregar un análisis y descripción. Para el conjunto de datos de detección de fraude hacer
+un merge entre tablas basado en TransactionID. Para esto, debe usar la función <strong>merge()</strong>. Esto
+es: <strong>pd.merge(train_transaction, train_identity, on=’TransactionID’, how=’left’)</strong>. Haga lo mismo
+para el conjunto de prueba, el cual debe usar para evaluar el modelo final.</p></li>
+<li><p>Según corresponda, realizar imputación de datos faltantes con la mediana (ver <strong>impute()</strong>).Realizar
+reducción de dimensionalidad por medio de eliminiación de columnas altamente correlacionadas
+usando Variance Inflation Factor (<em>VIF</em>). Para esto se recomienda usar la siguiente librería <strong>variance_inflation_factor()</strong>. Un <em>VIF ≥ 5</em> indica alta multicolinealidad entre la correspondiente variable
+independiente y las demás variables. Recomendación: Eliminar una columna a la vez. Aquella con
+el máximo <em>VIF ≥ 5</em>. Luego, para el nuevo pandas, calcular nuevamente VIF e identificar nuevas
+columnas con <em>VIF ≥ 5</em> máximo, y así sucesivamente hasta obtener solo valores de <em>VIF &lt; 5</em>. Según
+corresponda, variables categóricas deben previamente codificarse usando por ejemplo <strong>OneHotEncoder()</strong>. Pueden mantener las variables categóricas antes de la codificación previa al entrenamiento
+del modelo y reducir multicolinealidad usando la prueba <strong>chi2_contingency()</strong>.</p></li>
+</ul>
+</section>
+<section id="windspeed">
+<h1><strong>WindSpeed:</strong><a class="headerlink" href="#windspeed" title="Link to this heading">#</a></h1>
+<section id="liberias">
+<h2><strong>Liberias:</strong><a class="headerlink" href="#liberias" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">Lasso</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="importacion-de-datos">
+<h2><strong>Importacion de datos:</strong><a class="headerlink" href="#importacion-de-datos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/lihkir/Data/raw/main/wind_speed/data_treino_dv_df_2000_2010.csv&quot;</span>
+<span class="c1"># Importar datos del archivo CSV</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-exploratorio">
+<h2><strong>Analisis Exploratorio:</strong><a class="headerlink" href="#analisis-exploratorio" title="Link to this heading">#</a></h2>
+</section>
+<section id="estrutura-de-los-datos">
+<h2><strong>Estrutura de los datos:</strong><a class="headerlink" href="#estrutura-de-los-datos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 87693 entries, 0 to 87692
+Data columns (total 13 columns):
+ #   Column                                                 Non-Null Count  Dtype  
+---  ------                                                 --------------  -----  
+ 0   HORA (UTC)                                             87693 non-null  object 
+ 1   VENTO, DIREï¿½ï¿½O HORARIA (gr) (ï¿½ (gr))             87693 non-null  float64
+ 2   VENTO, VELOCIDADE HORARIA (m/s)                        87693 non-null  float64
+ 3   UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)               87693 non-null  float64
+ 4   UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)               87693 non-null  float64
+ 5   TEMPERATURA Mï¿½XIMA NA HORA ANT. (AUT) (ï¿½C)         87693 non-null  float64
+ 6   TEMPERATURA Mï¿½NIMA NA HORA ANT. (AUT) (ï¿½C)         87693 non-null  float64
+ 7   UMIDADE RELATIVA DO AR, HORARIA (%)                    87693 non-null  float64
+ 8   PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)  87693 non-null  float64
+ 9   PRECIPITAï¿½ï¿½O TOTAL, HORï¿½RIO (mm)                 87693 non-null  float64
+ 10  VENTO, RAJADA MAXIMA (m/s)                             87693 non-null  float64
+ 11  PRESSï¿½O ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)      87693 non-null  float64
+ 12  PRESSï¿½O ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)     87693 non-null  float64
+dtypes: float64(12), object(1)
+memory usage: 8.7+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<section id="tamano">
+<h3><strong>Tamaño:</strong><a class="headerlink" href="#tamano" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(87693, 13)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conteo-de-nulos">
+<h3><strong>Conteo de nulos:</strong><a class="headerlink" href="#conteo-de-nulos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conteo de datos faltantes por columna</span>
+<span class="n">datos_faltantes</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calcular el porcentaje de datos faltantes por columna</span>
+<span class="n">porcentaje_faltantes</span> <span class="o">=</span> <span class="p">(</span><span class="n">datos_faltantes</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Crear un DataFrame para mostrar los resultados</span>
+<span class="n">df_faltantes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;Datos faltantes&quot;</span><span class="p">:</span> <span class="n">datos_faltantes</span><span class="p">,</span> <span class="s2">&quot;Porcentaje faltantes&quot;</span><span class="p">:</span> <span class="n">porcentaje_faltantes</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Mostrar el DataFrame con los resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_faltantes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                    Datos faltantes  \
+HORA (UTC)                                                        0   
+VENTO, DIREï¿½ï¿½O HORARIA (gr) (ï¿½ (gr))                        0   
+VENTO, VELOCIDADE HORARIA (m/s)                                   0   
+UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)                          0   
+UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)                          0   
+TEMPERATURA Mï¿½XIMA NA HORA ANT. (AUT) (ï¿½C)                    0   
+TEMPERATURA Mï¿½NIMA NA HORA ANT. (AUT) (ï¿½C)                    0   
+UMIDADE RELATIVA DO AR, HORARIA (%)                               0   
+PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARI...                0   
+PRECIPITAï¿½ï¿½O TOTAL, HORï¿½RIO (mm)                            0   
+VENTO, RAJADA MAXIMA (m/s)                                        0   
+PRESSï¿½O ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)                 0   
+PRESSï¿½O ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)                0   
+
+                                                    Porcentaje faltantes  
+HORA (UTC)                                                           0.0  
+VENTO, DIREï¿½ï¿½O HORARIA (gr) (ï¿½ (gr))                           0.0  
+VENTO, VELOCIDADE HORARIA (m/s)                                      0.0  
+UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)                             0.0  
+UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)                             0.0  
+TEMPERATURA Mï¿½XIMA NA HORA ANT. (AUT) (ï¿½C)                       0.0  
+TEMPERATURA Mï¿½NIMA NA HORA ANT. (AUT) (ï¿½C)                       0.0  
+UMIDADE RELATIVA DO AR, HORARIA (%)                                  0.0  
+PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARI...                   0.0  
+PRECIPITAï¿½ï¿½O TOTAL, HORï¿½RIO (mm)                               0.0  
+VENTO, RAJADA MAXIMA (m/s)                                           0.0  
+PRESSï¿½O ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)                    0.0  
+PRESSï¿½O ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)                   0.0  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables">
+<h3><strong>Variables:</strong><a class="headerlink" href="#variables" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coln</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coln</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;HORA (UTC)&#39;, &#39;VENTO, DIREï¿½ï¿½O HORARIA (gr) (ï¿½ (gr))&#39;,
+       &#39;VENTO, VELOCIDADE HORARIA (m/s)&#39;,
+       &#39;UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)&#39;,
+       &#39;UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)&#39;,
+       &#39;TEMPERATURA Mï¿½XIMA NA HORA ANT. (AUT) (ï¿½C)&#39;,
+       &#39;TEMPERATURA Mï¿½NIMA NA HORA ANT. (AUT) (ï¿½C)&#39;,
+       &#39;UMIDADE RELATIVA DO AR, HORARIA (%)&#39;,
+       &#39;PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)&#39;,
+       &#39;PRECIPITAï¿½ï¿½O TOTAL, HORï¿½RIO (mm)&#39;, &#39;VENTO, RAJADA MAXIMA (m/s)&#39;,
+       &#39;PRESSï¿½O ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)&#39;,
+       &#39;PRESSï¿½O ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="renombre-de-las-columndas-del-dataframe">
+<h3><strong>Renombre de las Columndas del Dataframe:</strong><a class="headerlink" href="#renombre-de-las-columndas-del-dataframe" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Renombrar las columnas del DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;HORA (UTC)&quot;</span><span class="p">:</span> <span class="s2">&quot;HORA&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;VENTO, DIREï¿½ï¿½O HORARIA (gr) (ï¿½ (gr))&quot;</span><span class="p">:</span> <span class="s2">&quot;DIR_VIENTO&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;VENTO, VELOCIDADE HORARIA (m/s)&quot;</span><span class="p">:</span> <span class="s2">&quot;VEL_VIENTO&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)&quot;</span><span class="p">:</span> <span class="s2">&quot;UMID_REL_MAX&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)&quot;</span><span class="p">:</span> <span class="s2">&quot;UMID_REL_MIN&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TEMPERATURA Mï¿½XIMA NA HORA ANT. (AUT) (ï¿½C)&quot;</span><span class="p">:</span> <span class="s2">&quot;TEMP_MAX_ANT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TEMPERATURA Mï¿½NIMA NA HORA ANT. (AUT) (ï¿½C)&quot;</span><span class="p">:</span> <span class="s2">&quot;TEMP_MIN_ANT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;UMIDADE RELATIVA DO AR, HORARIA (%)&quot;</span><span class="p">:</span> <span class="s2">&quot;UMID_REL_AR&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)&quot;</span><span class="p">:</span> <span class="s2">&quot;PRES_ATM&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PRECIPITAï¿½ï¿½O TOTAL, HORï¿½RIO (mm)&quot;</span><span class="p">:</span> <span class="s2">&quot;PRECIP_TOTAL&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;VENTO, RAJADA MAXIMA (m/s)&quot;</span><span class="p">:</span> <span class="s2">&quot;RAJADA_MAX&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PRESSï¿½O ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)&quot;</span><span class="p">:</span> <span class="s2">&quot;PRES_ATM_MAX_ANT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PRESSï¿½O ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)&quot;</span><span class="p">:</span> <span class="s2">&quot;PRES_ATM_MIN_ANT&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Mostrar las nuevas columnas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;HORA&#39;, &#39;DIR_VIENTO&#39;, &#39;VEL_VIENTO&#39;, &#39;UMID_REL_MAX&#39;, &#39;UMID_REL_MIN&#39;,
+       &#39;TEMP_MAX_ANT&#39;, &#39;TEMP_MIN_ANT&#39;, &#39;UMID_REL_AR&#39;, &#39;PRES_ATM&#39;,
+       &#39;PRECIP_TOTAL&#39;, &#39;RAJADA_MAX&#39;, &#39;PRES_ATM_MAX_ANT&#39;, &#39;PRES_ATM_MIN_ANT&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cambio-en-el-formato">
+<h3><strong>Cambio en el formato:</strong><a class="headerlink" href="#cambio-en-el-formato" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convertir la columna de hora a formato de tiempo de Pandas</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;HORA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;HORA&quot;</span><span class="p">])</span>
+
+<span class="c1"># Extraer la hora del formato de tiempo y almacenarla en una nueva columna</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;HORA_del_dia&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;HORA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\3234752459.py:2: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  df[&#39;HORA&#39;] = pd.to_datetime(df[&#39;HORA&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Normalización de Nombres de Columnas:</strong>
+Se clarificaron y simplificaron los nombres de las columnas para facilitar su manejo y referencia en análisis subsiguientes. Esto es esencial para evitar errores y confusiones en etapas posteriores de modelado y análisis de datos.</p>
+<p><strong>Verificación de valores nulo en el Dataset:</strong>
+Se confirmó la ausencia de valores nulos en el conjunto de datos. Este paso asegura que no será necesario realizar procedimientos adicionales para tratar con datos incompletos, manteniendo la integridad y maximizando el uso de todos los datos disponibles.</p>
+<p><strong>Conversión y Extracción de Tiempo:</strong>
+La columna de hora se transformó a un formato de tiempo reconocible por Pandas, lo que permite manipulaciones temporales más complejas y precisas. Además, se extrajo la hora del día en una nueva columna para facilitar análisis que requieren una resolución temporal como el diurno, crucial para estudios sobre patrones de viento y generación de energía.</p>
+</section>
+<section id="summary">
+<h3><strong>Summary:</strong><a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HORA</th>
+      <th>DIRECCION_VIENTO</th>
+      <th>VELOCIDAD_VIENTO</th>
+      <th>UMIDAD_REL_MAX</th>
+      <th>UMIDAD_REL_MIN</th>
+      <th>TEMP_MAX_ANT</th>
+      <th>TEMP_MIN_ANT</th>
+      <th>UMIDADE_REL_AR</th>
+      <th>PRESION_ATMOSFERICA</th>
+      <th>PRECIPITACION_TOTAL</th>
+      <th>RAJADA_MAXIMA</th>
+      <th>PRESION_ATMOSFERICA_MAX_ANT</th>
+      <th>PRESION_ATMOSFERICA_MIN_ANT</th>
+      <th>HORA_del_dia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2024-04-14 12:00:00</td>
+      <td>0.809017</td>
+      <td>1.8</td>
+      <td>69.0</td>
+      <td>60.0</td>
+      <td>22.6</td>
+      <td>20.7</td>
+      <td>61.0</td>
+      <td>888.2</td>
+      <td>0.0</td>
+      <td>3.8</td>
+      <td>888.2</td>
+      <td>887.7</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2024-04-14 13:00:00</td>
+      <td>0.965926</td>
+      <td>2.7</td>
+      <td>62.0</td>
+      <td>55.0</td>
+      <td>24.2</td>
+      <td>22.5</td>
+      <td>55.0</td>
+      <td>888.4</td>
+      <td>0.0</td>
+      <td>4.7</td>
+      <td>888.4</td>
+      <td>888.2</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2024-04-14 14:00:00</td>
+      <td>0.891007</td>
+      <td>2.0</td>
+      <td>56.0</td>
+      <td>50.0</td>
+      <td>25.5</td>
+      <td>24.3</td>
+      <td>51.0</td>
+      <td>888.1</td>
+      <td>0.0</td>
+      <td>4.9</td>
+      <td>888.4</td>
+      <td>888.1</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2024-04-14 15:00:00</td>
+      <td>0.848048</td>
+      <td>2.5</td>
+      <td>52.0</td>
+      <td>44.0</td>
+      <td>27.4</td>
+      <td>25.0</td>
+      <td>44.0</td>
+      <td>887.4</td>
+      <td>0.0</td>
+      <td>5.8</td>
+      <td>888.1</td>
+      <td>887.4</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2024-04-14 16:00:00</td>
+      <td>0.224951</td>
+      <td>2.4</td>
+      <td>50.0</td>
+      <td>43.0</td>
+      <td>27.1</td>
+      <td>25.5</td>
+      <td>46.0</td>
+      <td>886.5</td>
+      <td>0.0</td>
+      <td>5.8</td>
+      <td>887.4</td>
+      <td>886.5</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HORA</th>
+      <th>DIRECCION_VIENTO</th>
+      <th>VELOCIDAD_VIENTO</th>
+      <th>UMIDAD_REL_MAX</th>
+      <th>UMIDAD_REL_MIN</th>
+      <th>TEMP_MAX_ANT</th>
+      <th>TEMP_MIN_ANT</th>
+      <th>UMIDADE_REL_AR</th>
+      <th>PRESION_ATMOSFERICA</th>
+      <th>PRECIPITACION_TOTAL</th>
+      <th>RAJADA_MAXIMA</th>
+      <th>PRESION_ATMOSFERICA_MAX_ANT</th>
+      <th>PRESION_ATMOSFERICA_MIN_ANT</th>
+      <th>HORA_del_dia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>87693</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2024-04-14 11:30:23.174027520</td>
+      <td>0.405810</td>
+      <td>2.466192</td>
+      <td>69.058465</td>
+      <td>63.176194</td>
+      <td>21.921264</td>
+      <td>20.684570</td>
+      <td>66.146682</td>
+      <td>887.251925</td>
+      <td>0.160907</td>
+      <td>5.161076</td>
+      <td>887.580724</td>
+      <td>886.891093</td>
+      <td>11.506437</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>2024-04-14 00:00:00</td>
+      <td>-1.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+      <td>10.000000</td>
+      <td>9.200000</td>
+      <td>8.400000</td>
+      <td>10.000000</td>
+      <td>863.400000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>865.300000</td>
+      <td>862.800000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2024-04-14 05:00:00</td>
+      <td>-0.156434</td>
+      <td>1.500000</td>
+      <td>54.000000</td>
+      <td>48.000000</td>
+      <td>19.200000</td>
+      <td>18.400000</td>
+      <td>51.000000</td>
+      <td>885.300000</td>
+      <td>0.000000</td>
+      <td>3.400000</td>
+      <td>885.600000</td>
+      <td>885.000000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2024-04-14 12:00:00</td>
+      <td>0.788011</td>
+      <td>2.400000</td>
+      <td>72.000000</td>
+      <td>64.000000</td>
+      <td>21.400000</td>
+      <td>20.200000</td>
+      <td>68.000000</td>
+      <td>887.200000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>887.500000</td>
+      <td>886.900000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2024-04-14 18:00:00</td>
+      <td>0.970296</td>
+      <td>3.400000</td>
+      <td>87.000000</td>
+      <td>80.000000</td>
+      <td>24.700000</td>
+      <td>23.100000</td>
+      <td>84.000000</td>
+      <td>889.100000</td>
+      <td>0.000000</td>
+      <td>6.800000</td>
+      <td>889.300000</td>
+      <td>888.800000</td>
+      <td>18.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2024-04-14 23:00:00</td>
+      <td>1.000000</td>
+      <td>10.000000</td>
+      <td>100.000000</td>
+      <td>98.000000</td>
+      <td>35.300000</td>
+      <td>34.400000</td>
+      <td>99.000000</td>
+      <td>1023.500000</td>
+      <td>70.800000</td>
+      <td>24.300000</td>
+      <td>913.100000</td>
+      <td>910.900000</td>
+      <td>23.000000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>0.686247</td>
+      <td>1.313968</td>
+      <td>19.640222</td>
+      <td>20.166336</td>
+      <td>3.721386</td>
+      <td>3.513744</td>
+      <td>19.992327</td>
+      <td>4.012404</td>
+      <td>1.307515</td>
+      <td>2.311157</td>
+      <td>3.646750</td>
+      <td>3.564539</td>
+      <td>6.932300</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Cantidad de Datos:</strong></p>
+<p>Se analizaron un total de <strong>87,693</strong> observaciones para cada una de las variables, asegurando una muestra robusta para los análisis estadísticos y la modelación.
+Variables Analizadas:</p>
+<ul class="simple">
+<li><p><strong>Hora del Día (HORA_del_dia):</strong> Las mediciones cubren todas las horas del día desde la medianoche hasta las 11 PM, lo que permite estudios detallados sobre variaciones diurnas.</p></li>
+<li><p><strong>Dirección del Viento (DIRECCION_VIENTO):</strong> Los valores varían desde -1 hasta 1, sugiriendo una normalización previa de estos datos. La media cercana a 0.406 indica una tendencia general en la dirección del viento.</p></li>
+<li><p><strong>Velocidad del Viento (VELOCIDAD_VIENTO):</strong> Oscila entre 0 y 10 m/s con una media de 2.47 m/s, lo cual es crucial para estimaciones de energía eólica.</p></li>
+<li><p><strong>Humedad Relativa (UMIDAD_REL_MAX, UMIDAD_REL_MIN, UMIDADE_REL_AR):</strong> Con máximos y mínimos de 100% y 10% respectivamente, estas variables muestran un amplio rango que es vital para comprender la variabilidad climática.</p></li>
+<li><p><strong>Temperatura (TEMP_MAX_ANT, TEMP_MIN_ANT):</strong> Se registran temperaturas que varían significativamente durante el día, de vital importancia para modelar la conducta atmosférica.</p></li>
+<li><p><strong>Presión Atmosférica (PRESION_ATMOSFERICA, PRESION_ATMOSFERICA_MAX_ANT, PRESION_ATMOSFERICA_MIN_ANT):</strong> La presión atmosférica también presenta variaciones, un factor esencial en muchos modelos meteorológicos.</p></li>
+<li><p><strong>Precipitación Total (PRECIPITACION_TOTAL):</strong> Varía entre 0 y 70.8 mm, indicando eventos de precipitación significativos que pueden impactar la velocidad del viento y la generación de energía.</p></li>
+</ul>
+<p><strong>Dispersión y Tendencia Central:</strong></p>
+<ul class="simple">
+<li><p>Los valores de desviación estándar para cada variable indican la variabilidad existente en los datos, esencial para la detección de patrones y anomalías.</p></li>
+<li><p>Las medias y medianas de cada variable proporcionan un centro de gravedad de los datos, ayudando a entender las condiciones promedio.</p></li>
+</ul>
+</section>
+</section>
+<section id="visualizacion">
+<h2><strong>Visualizacion:</strong><a class="headerlink" href="#visualizacion" title="Link to this heading">#</a></h2>
+<section id="histograma">
+<h3><strong>Histograma:</strong><a class="headerlink" href="#histograma" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configurar el tamaño de la figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Iterar sobre cada columna del DataFrame</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="c1"># Crear un subplot para cada variable</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Crear el histograma</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+    <span class="c1"># Añadir título al subplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Ajustar diseño para evitar superposición de subplots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a39faa1cd8bfb9d434755b0047805e9ede04ac1d17d0c87983d6d6d902586637.png" src="_images/a39faa1cd8bfb9d434755b0047805e9ede04ac1d17d0c87983d6d6d902586637.png" />
+</div>
+</div>
+<p><strong>Hora y Hora_del_día:</strong> Muestran una distribución uniforme a lo largo del día, indicando que las mediciones se tomaron de forma equitativa en cada hora.</p>
+<p><strong>Dirección del Viento:</strong> Presenta una distribución bimodal, con picos alrededor de -1 y 1, lo que sugiere que el viento tiende a soplar en dos direcciones predominantes.</p>
+<p><strong>Velocidad del Viento:</strong> La distribución es aproximadamente normal con un sesgo ligero hacia velocidades menores, lo cual es típico en datos de viento.</p>
+<p><strong>Humedad Relativa (Max, Min y del Aire):</strong> Muestran distribuciones sesgadas hacia los valores más altos, lo que podría indicar condiciones de humedad prevalentes en la región de estudio.</p>
+<p><strong>Temperatura (Max Anterior, Min Anterior):</strong> Ambas presentan distribuciones que sugieren variaciones diarias normales, con temperaturas máximas más altas como se esperaría.</p>
+<p><strong>Precipitación Total:</strong> Muestra una gran cantidad de días con precipitación nula o baja y algunos eventos de precipitaciones intensas.</p>
+<p><strong>Rajada Máxima:</strong> La distribución de las ráfagas máximas del viento también tiende a ser normal con un sesgo hacia las velocidades más bajas.</p>
+<p><strong>Presión Atmosférica (Actual, Max Ant, Min Ant):</strong> Las presiones atmosféricas muestran distribuciones normales, indicativas de estabilidad en las condiciones de presión a lo largo del tiempo.</p>
+</section>
+<section id="boxplot">
+<h3><strong>Boxplot:</strong><a class="headerlink" href="#boxplot" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configurar el tamaño de la figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Iterar sobre cada columna del DataFrame</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="c1"># Crear un subplot para cada variable</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Crear el boxplot</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+
+    <span class="c1"># Añadir título al subplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+
+    <span class="c1"># Colocar nombre de la variable en el eje y</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Ajustar diseño para evitar superposición de subplots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09d44c46b96258acad208e4c9952a28b67724e3f43b052053448c6e3e16d7157.png" src="_images/09d44c46b96258acad208e4c9952a28b67724e3f43b052053448c6e3e16d7157.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Hora:</strong> Refleja una distribución uniforme sin valores atípicos, consistente con una cobertura temporal equitativa.</p></li>
+<li><p><strong>Dirección del Viento:</strong> La mayoría de los datos se concentran cerca de los extremos, con pocos valores atípicos, reiterando la presencia de direcciones de viento predominantes.</p></li>
+<li><p><strong>Velocidad del Viento:</strong> Presenta algunos valores atípicos altos, sugiriendo días con vientos excepcionalmente fuertes.</p></li>
+<li><p><strong>Humedad Relativa y Temperatura:</strong> Poseen varios valores atípicos que podrían corresponder a condiciones climáticas anormales o errores de medición.</p></li>
+<li><p><strong>Precipitación Total:</strong> Se identifican valores atípicos extremos, probablemente correspondientes a eventos de lluvia intensa.</p></li>
+<li><p><strong>Presión Atmosférica:</strong> Exhibe pocos valores atípicos, lo que podría ser indicativo de variaciones climáticas o errores en la medición.</p></li>
+</ul>
+</section>
+<section id="scatterplot">
+<h3><strong>ScatterPlot:</strong><a class="headerlink" href="#scatterplot" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar un mínimo de 4 pares de variables explicativas</span>
+<span class="n">pairs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;DIRECCION_VIENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;VELOCIDAD_VIENTO&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;UMIDAD_REL_MAX&quot;</span><span class="p">,</span> <span class="s2">&quot;VELOCIDAD_VIENTO&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;TEMP_MAX_ANT&quot;</span><span class="p">,</span> <span class="s2">&quot;VELOCIDAD_VIENTO&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;UMIDADE_REL_AR&quot;</span><span class="p">,</span> <span class="s2">&quot;VELOCIDAD_VIENTO&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># Configurar el tamaño de la figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Iterar sobre cada par de variables</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pairs</span><span class="p">):</span>
+    <span class="c1"># Crear un subplot para cada par de variables</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Trazar un scatterplot</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var2</span><span class="p">])</span>
+
+    <span class="c1"># Añadir título al subplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatterplot: </span><span class="si">{</span><span class="n">var1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">var2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Ajustar diseño para evitar superposición de subplots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e166e15ee8d64738756ea05379f99eb12ce38caade0315eb60e55c0b64ff0d34.png" src="_images/e166e15ee8d64738756ea05379f99eb12ce38caade0315eb60e55c0b64ff0d34.png" />
+</div>
+</div>
+<p><strong>Dirección del Viento vs. Velocidad del Viento:</strong> No se observa una correlación clara, lo que sugiere que la dirección del viento no determina su velocidad.</p>
+<p><strong>Temperatura Máxima Anterior vs. Velocidad del Viento:</strong> La dispersión no muestra una relación definida, lo que indica que la temperatura no tiene un impacto directo en la velocidad del viento.</p>
+<p><strong>Humedad Relativa (Max y del Aire) vs. Velocidad del Viento:</strong> Ambas graficas no muestran una correlación aparente, sugiriendo que la humedad relativa no influye significativamente en la velocidad del viento.</p>
+</section>
+<section id="regplot">
+<h3><strong>RegPlot:</strong><a class="headerlink" href="#regplot" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configurar el tamaño de la figura para los regplots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Iterar sobre cada par de variables para los regplots</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pairs</span><span class="p">):</span>
+    <span class="c1"># Crear un subplot para cada par de variables</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Trazar un regplot</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var2</span><span class="p">],</span> <span class="n">scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Añadir título al subplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Regplot: </span><span class="si">{</span><span class="n">var1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">var2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Ajustar diseño para evitar superposición de subplots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b96fca447a946b0b02ba952527334b08c86dd295451999eda88e29eff9b3c3c9.png" src="_images/b96fca447a946b0b02ba952527334b08c86dd295451999eda88e29eff9b3c3c9.png" />
+</div>
+</div>
+<p><strong>Dirección del Viento vs. Velocidad del Viento:</strong> La concentración de puntos a lo largo de la parte inferior sugiere que la velocidad del viento tiende a ser baja independientemente de la dirección del viento.</p>
+<p><strong>Temperatura Máxima Anterior vs. Velocidad del Viento:</strong> Similar al scatterplot, no hay una tendencia clara, lo que implica una independencia entre estas dos variables.</p>
+<p><strong>Humedad Relativa (Max y del Aire) vs. Velocidad del Viento:</strong> A pesar de la falta de una relación lineal, hay una concentración de valores en los rangos de humedad más bajos, lo que podría ser de interés para un análisis más profundo.</p>
+</section>
+</section>
+<section id="correlacion-entre-variables">
+<h2><strong>Correlacion entre variables:</strong><a class="headerlink" href="#correlacion-entre-variables" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcular la matriz de correlación</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1"># Configurar el tamaño de la figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Trazar el mapa de calor</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">)</span>
+
+<span class="c1"># Añadir título</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mapa de Calor de Correlaciones&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d8b21684b481142ae814b1c1561bf8321f8e3903299f24c55c7c81531be6ee30.png" src="_images/d8b21684b481142ae814b1c1561bf8321f8e3903299f24c55c7c81531be6ee30.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                 HORA  DIRECCION_VIENTO  VELOCIDAD_VIENTO  \
+HORA                         1.000000          0.005874          0.258108   
+DIRECCION_VIENTO             0.005874          1.000000          0.256588   
+VELOCIDAD_VIENTO             0.258108          0.256588          1.000000   
+UMIDAD_REL_MAX              -0.352719         -0.325512         -0.282787   
+UMIDAD_REL_MIN              -0.402061         -0.301443         -0.291752   
+TEMP_MAX_ANT                 0.551250         -0.003071          0.247706   
+TEMP_MIN_ANT                 0.512878         -0.003228          0.231472   
+UMIDADE_REL_AR              -0.374856         -0.325574         -0.301358   
+PRESION_ATMOSFERICA         -0.033710          0.311515          0.204031   
+PRECIPITACION_TOTAL          0.030936         -0.077363          0.009466   
+RAJADA_MAXIMA                0.364312          0.158429          0.868279   
+PRESION_ATMOSFERICA_MAX_ANT  0.008508          0.336029          0.242446   
+PRESION_ATMOSFERICA_MIN_ANT -0.030738          0.347117          0.231584   
+HORA_del_dia                 1.000000          0.005874          0.258108   
+
+                             UMIDAD_REL_MAX  UMIDAD_REL_MIN  TEMP_MAX_ANT  \
+HORA                              -0.352719       -0.402061      0.551250   
+DIRECCION_VIENTO                  -0.325512       -0.301443     -0.003071   
+VELOCIDAD_VIENTO                  -0.282787       -0.291752      0.247706   
+UMIDAD_REL_MAX                     1.000000        0.976847     -0.632577   
+UMIDAD_REL_MIN                     0.976847        1.000000     -0.682133   
+TEMP_MAX_ANT                      -0.632577       -0.682133      1.000000   
+TEMP_MIN_ANT                      -0.619944       -0.632224      0.974177   
+UMIDADE_REL_AR                     0.984191        0.983224     -0.657367   
+PRESION_ATMOSFERICA               -0.201118       -0.197731     -0.057290   
+PRECIPITACION_TOTAL                0.150524        0.119286     -0.038419   
+RAJADA_MAXIMA                     -0.308853       -0.336653      0.375482   
+PRESION_ATMOSFERICA_MAX_ANT       -0.258132       -0.259433     -0.004993   
+PRESION_ATMOSFERICA_MIN_ANT       -0.249057       -0.242388     -0.040266   
+HORA_del_dia                      -0.352719       -0.402061      0.551250   
+
+                             TEMP_MIN_ANT  UMIDADE_REL_AR  \
+HORA                             0.512878       -0.374856   
+DIRECCION_VIENTO                -0.003228       -0.325574   
+VELOCIDAD_VIENTO                 0.231472       -0.301358   
+UMIDAD_REL_MAX                  -0.619944        0.984191   
+UMIDAD_REL_MIN                  -0.632224        0.983224   
+TEMP_MAX_ANT                     0.974177       -0.657367   
+TEMP_MIN_ANT                     1.000000       -0.626388   
+UMIDADE_REL_AR                  -0.626388        1.000000   
+PRESION_ATMOSFERICA             -0.083511       -0.224574   
+PRECIPITACION_TOTAL             -0.077409        0.155324   
+RAJADA_MAXIMA                    0.343417       -0.324859   
+PRESION_ATMOSFERICA_MAX_ANT     -0.038495       -0.287034   
+PRESION_ATMOSFERICA_MIN_ANT     -0.064440       -0.273784   
+HORA_del_dia                     0.512878       -0.374856   
+
+                             PRESION_ATMOSFERICA  PRECIPITACION_TOTAL  \
+HORA                                   -0.033710             0.030936   
+DIRECCION_VIENTO                        0.311515            -0.077363   
+VELOCIDAD_VIENTO                        0.204031             0.009466   
+UMIDAD_REL_MAX                         -0.201118             0.150524   
+UMIDAD_REL_MIN                         -0.197731             0.119286   
+TEMP_MAX_ANT                           -0.057290            -0.038419   
+TEMP_MIN_ANT                           -0.083511            -0.077409   
+UMIDADE_REL_AR                         -0.224574             0.155324   
+PRESION_ATMOSFERICA                     1.000000            -0.073342   
+PRECIPITACION_TOTAL                    -0.073342             1.000000   
+RAJADA_MAXIMA                           0.143939             0.123732   
+PRESION_ATMOSFERICA_MAX_ANT             0.881448            -0.065442   
+PRESION_ATMOSFERICA_MIN_ANT             0.885210            -0.084140   
+HORA_del_dia                           -0.033710             0.030936   
+
+                             RAJADA_MAXIMA  PRESION_ATMOSFERICA_MAX_ANT  \
+HORA                              0.364312                     0.008508   
+DIRECCION_VIENTO                  0.158429                     0.336029   
+VELOCIDAD_VIENTO                  0.868279                     0.242446   
+UMIDAD_REL_MAX                   -0.308853                    -0.258132   
+UMIDAD_REL_MIN                   -0.336653                    -0.259433   
+TEMP_MAX_ANT                      0.375482                    -0.004993   
+TEMP_MIN_ANT                      0.343417                    -0.038495   
+UMIDADE_REL_AR                   -0.324859                    -0.287034   
+PRESION_ATMOSFERICA               0.143939                     0.881448   
+PRECIPITACION_TOTAL               0.123732                    -0.065442   
+RAJADA_MAXIMA                     1.000000                     0.192084   
+PRESION_ATMOSFERICA_MAX_ANT       0.192084                     1.000000   
+PRESION_ATMOSFERICA_MIN_ANT       0.170240                     0.964819   
+HORA_del_dia                      0.364312                     0.008508   
+
+                             PRESION_ATMOSFERICA_MIN_ANT  HORA_del_dia  
+HORA                                           -0.030738      1.000000  
+DIRECCION_VIENTO                                0.347117      0.005874  
+VELOCIDAD_VIENTO                                0.231584      0.258108  
+UMIDAD_REL_MAX                                 -0.249057     -0.352719  
+UMIDAD_REL_MIN                                 -0.242388     -0.402061  
+TEMP_MAX_ANT                                   -0.040266      0.551250  
+TEMP_MIN_ANT                                   -0.064440      0.512878  
+UMIDADE_REL_AR                                 -0.273784     -0.374856  
+PRESION_ATMOSFERICA                             0.885210     -0.033710  
+PRECIPITACION_TOTAL                            -0.084140      0.030936  
+RAJADA_MAXIMA                                   0.170240      0.364312  
+PRESION_ATMOSFERICA_MAX_ANT                     0.964819      0.008508  
+PRESION_ATMOSFERICA_MIN_ANT                     1.000000     -0.030738  
+HORA_del_dia                                   -0.030738      1.000000  
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>La hora del día</strong> tiene una correlación positiva moderada con <strong>la temperatura máxima anterior</strong> (0.551250) y <strong>la máxima ráfaga de viento</strong> (0.364312), lo que sugiere que tanto las temperaturas más altas como las ráfagas de viento más fuertes tienden a ocurrir en horas específicas del día.</p>
+<p><strong>La dirección del viento</strong> muestra una correlación positiva moderada con la presión atmosférica y sus valores máximos y mínimos anteriores (alrededor de 0.31-0.35), indicando que ciertas direcciones del viento podrían estar asociadas con valores específicos de presión atmosférica.</p>
+<p><strong>La velocidad del viento</strong> tiene una correlación muy fuerte con <strong>la ráfaga máxima</strong> (0.868279), lo que es esperado, ya que las ráfagas son picos en la velocidad del viento.</p>
+<p><strong>La humedad relativa máxima y mínima</strong> presentan una correlación muy alta entre sí (0.976847), lo que implica que los valores de humedad relativa tienden a cambiar juntos durante el mismo período. Estas también tienen correlaciones negativas fuertes con <strong>la temperatura máxima anterior</strong> (aproximadamente -0.63), lo que podría sugerir que cuando la temperatura alcanza su punto más alto, la humedad relativa tiende a ser más baja.</p>
+<p><strong>La temperatura máxima anterior</strong> y l<strong>a temperatura mínima anterior</strong> también están muy correlacionadas (0.974177), lo que indica que las temperaturas máximas y mínimas del día previo están muy relacionadas, probablemente reflejando la variación diurna normal de temperatura.</p>
+<p><strong>La presión atmosférica</strong> está correlacionada con sus propios valores máximos y mínimos anteriores (alrededor de 0.96), sugiriendo que los cambios en la presión atmosférica son relativamente estables y graduales en este conjunto de datos.</p>
+</section>
+<section id="reduccion-de-dimensiones">
+<h2><strong>Reduccion de dimensiones:</strong><a class="headerlink" href="#reduccion-de-dimensiones" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función para calcular el VIF para el conjunto de datos</span>
+<span class="k">def</span> <span class="nf">calculate_vif</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># Convertir todas las columnas a tipo numérico si es posible, ignorar errores para mantener columnas no convertibles</span>
+    <span class="n">df_numeric</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="c1"># Eliminar filas con cualquier NaN en columnas numéricas (opcional, dependiendo de tu estrategia de manejo de datos)</span>
+    <span class="n">df_numeric</span> <span class="o">=</span> <span class="n">df_numeric</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="c1"># Calcular el VIF para cada columna numérica</span>
+    <span class="n">vif_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;feature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_numeric</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">df_numeric</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df_numeric</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">vif_data</span>
+
+
+<span class="c1"># Función para eliminar columnas con alto VIF</span>
+<span class="k">def</span> <span class="nf">remove_high_vif_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dependent_col</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">features</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dependent_col</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Calcular VIF para el conjunto de datos excluyendo la variable dependiente</span>
+        <span class="n">vif_data</span> <span class="o">=</span> <span class="n">calculate_vif</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+        <span class="n">max_vif</span> <span class="o">=</span> <span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">max_vif</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="c1"># Eliminar la columna con el VIF más alto</span>
+        <span class="n">max_vif_feature</span> <span class="o">=</span> <span class="n">vif_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">max_vif</span><span class="p">,</span> <span class="s2">&quot;feature&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">features</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">max_vif_feature</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columna eliminada: </span><span class="si">{</span><span class="n">max_vif_feature</span><span class="si">}</span><span class="s2"> debido a un alto VIF de </span><span class="si">{</span><span class="n">max_vif</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span> <span class="o">+</span> <span class="p">[</span><span class="n">dependent_col</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reduced</span> <span class="o">=</span> <span class="n">remove_high_vif_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;VEL_VIENTO&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columna eliminada: HORA debido a un alto VIF de 83894.32615193808
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columna eliminada: PRES_ATM_MIN_ANT debido a un alto VIF de 969391.3696941748
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columna eliminada: PRES_ATM_MAX_ANT debido a un alto VIF de 222460.55504251865
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columna eliminada: TEMP_MAX_ANT debido a un alto VIF de 2419.0657118466975
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columna eliminada: UMID_REL_AR debido a un alto VIF de 589.2259835549189
+Columna eliminada: UMID_REL_MAX debido a un alto VIF de 322.4391410571869
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columna eliminada: PRES_ATM debido a un alto VIF de 132.3958705481665
+Columna eliminada: TEMP_MIN_ANT debido a un alto VIF de 17.6771409674466
+Columna eliminada: RAJADA_MAX debido a un alto VIF de 5.9021851811011015
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+C:\Users\Jesus David\AppData\Local\Temp\ipykernel_15272\2921786886.py:4: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df_numeric = df.apply(pd.to_numeric, errors=&#39;ignore&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí se utilizó el Factor de Inflación de la Varianza (VIF) para identificar y eliminar las variables con alta multicolinealidad.</p>
+<p><strong>La columna “HORA”</strong> fue eliminada debido a su extremadamente alto VIF de aproximadamente 83,894.33, lo que indica que esta variable estaba altamente correlacionada con otras variables en el conjunto de datos, posiblemente debido a que captura información que se solapa con la hora del día y otros ciclos temporales.</p>
+<p><strong>Las columnas “PRES_ATM_MIN_ANT” y “PRES_ATM_MAX_ANT”</strong> mostraron VIF extremadamente altos (aproximadamente 969,391.37 y 222,460.55 respectivamente), lo que sugiere que estas variables de presión atmosférica máxima y mínima anterior estaban también fuertemente correlacionadas con las otras características meteorológicas.</p>
+<p><strong>La “TEMP_MAX_ANT”</strong> (temperatura máxima anterior) y <strong>la “UMID_REL_AR”</strong> (humedad relativa del aire) fueron eliminadas por tener VIF altos (aproximadamente 2,419.07 y 589.23 respectivamente), lo que sugiere que estas variables compartían información redundante con otros predictores.</p>
+<p>La eliminación de la columna <strong>“UMID_REL_MAX”</strong> (humedad relativa máxima) con un VIF de 322.44, <strong>“PRES_ATM”</strong> (presión atmosférica) con un VIF de 132.39, <strong>“TEMP_MIN_ANT”</strong> (temperatura mínima anterior) con un VIF de 17.68 y <strong>“RAJADA_MAX”</strong> (ráfaga máxima) con un VIF de 5.90 refleja el mismo esfuerzo para reducir la multicolinealidad.</p>
+<p>Después de este proceso, se conservaron las columnas <strong>“DIR_VIENTO”</strong>, <strong>“UMID_REL_MIN”</strong>, <strong>“PRECIP_TOTAL”</strong>, <strong>“HORA_del_dia”</strong> y <strong>“VEL_VIENTO”</strong>, ya que estas variables no presentaron niveles problemáticos de multicolinealidad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reduced</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DIR_VIENTO</th>
+      <th>UMID_REL_MIN</th>
+      <th>PRECIP_TOTAL</th>
+      <th>HORA_del_dia</th>
+      <th>VEL_VIENTO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.809017</td>
+      <td>60.0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>1.8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.965926</td>
+      <td>55.0</td>
+      <td>0.0</td>
+      <td>13</td>
+      <td>2.7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.891007</td>
+      <td>50.0</td>
+      <td>0.0</td>
+      <td>14</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.848048</td>
+      <td>44.0</td>
+      <td>0.0</td>
+      <td>15</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.224951</td>
+      <td>43.0</td>
+      <td>0.0</td>
+      <td>16</td>
+      <td>2.4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="comparacion-de-modelos">
+<h2><strong>Comparacion de modelos:</strong><a class="headerlink" href="#comparacion-de-modelos" title="Link to this heading">#</a></h2>
+<section id="preparacion-de-los-datos">
+<h3><strong>Preparacion de los datos:</strong><a class="headerlink" href="#preparacion-de-los-datos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;VEL_VIENTO&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="p">[</span><span class="s2">&quot;VEL_VIENTO&quot;</span><span class="p">]</span>
+
+<span class="c1"># Dividir los datos en conjuntos de entrenamiento y prueba</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># Escalar las características</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="entrenamiento">
+<h3><strong>Entrenamiento:</strong><a class="headerlink" href="#entrenamiento" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inicializar los modelos</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="p">)</span>  <span class="c1"># El alpha es un parámetro de regularización que puede ser ajustado</span>
+<span class="n">lasso</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># El alpha aquí también es ajustable</span>
+
+<span class="c1"># Entrenar los modelos</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">ridge</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">lasso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Lasso(alpha=0.1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Lasso<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.linear_model.Lasso.html">?<span>Documentation for Lasso</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Lasso(alpha=0.1)</pre></div> </div></div></div></div></div></div>
+</div>
+</section>
+<section id="evaluacion-de-modelos">
+<h3><strong>Evaluacion de modelos:</strong><a class="headerlink" href="#evaluacion-de-modelos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función para calcular métricas</span>
+<span class="k">def</span> <span class="nf">calculate_metrics</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">mse</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">r2</span>
+
+
+<span class="c1"># Calcular métricas</span>
+<span class="n">metrics_lr</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">lr</span><span class="p">,</span> <span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">metrics_ridge</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">ridge</span><span class="p">,</span> <span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">metrics_lasso</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">lasso</span><span class="p">,</span> <span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1"># Organizacion de las métricas en un DataFrame</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;Linear Regression&quot;</span><span class="p">:</span> <span class="n">metrics_lr</span><span class="p">,</span> <span class="s2">&quot;Ridge&quot;</span><span class="p">:</span> <span class="n">metrics_ridge</span><span class="p">,</span> <span class="s2">&quot;Lasso&quot;</span><span class="p">:</span> <span class="n">metrics_lasso</span><span class="p">},</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;RMSE&quot;</span><span class="p">,</span> <span class="s2">&quot;MAE&quot;</span><span class="p">,</span> <span class="s2">&quot;R^2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Linear Regression</th>
+      <th>Ridge</th>
+      <th>Lasso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>RMSE</th>
+      <td>1.209956</td>
+      <td>1.209955</td>
+      <td>1.218547</td>
+    </tr>
+    <tr>
+      <th>MAE</th>
+      <td>0.965040</td>
+      <td>0.965040</td>
+      <td>0.973746</td>
+    </tr>
+    <tr>
+      <th>R^2</th>
+      <td>0.144963</td>
+      <td>0.144963</td>
+      <td>0.132777</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Regresión Lineal:</strong>
+Tiene un <strong>RMSE</strong> de 1.209956 y un <strong>MAE</strong> de 0.965040, lo que indica que, en promedio, las predicciones del modelo desvían alrededor de 1.21 unidades del valor real en términos de RMSE y alrededor de 0.965 unidades en términos de MAE.
+Un <strong>R^2</strong> de 0.144963 sugiere que aproximadamente el 14.5% de la variabilidad de la variable dependiente es explicada por el modelo.</p>
+<p><strong>Ridge:</strong>
+Posee prácticamente el mismo <strong>RMSE</strong> y <strong>MAE</strong> que la regresión lineal, lo cual es esperable ya que Ridge es una regresión lineal con regularización L2 que castiga los coeficientes grandes, y puede no hacer una gran diferencia si la multicolinealidad no es alta o si el modelo lineal no está sobreajustado.
+El R^2 también es idéntico al de la regresión lineal, reforzando la idea de que, para este conjunto de datos, la penalización adicional de Ridge no altera significativamente el ajuste del modelo.</p>
+<p><strong>Lasso:</strong>
+Presenta un <strong>RMSE</strong> ligeramente más alto de 1.218547 y un <strong>MAE</strong> de 0.973746, lo que significa que las predicciones de este modelo tienden a estar un poco más alejadas de los valores reales en comparación con los otros dos modelos.
+El <strong>R^2</strong> de 0.132777 es más bajo que los otros modelos, lo que indica que Lasso explica aproximadamente el 13.3% de la variabilidad de la variable dependiente, un poco menos que la regresión lineal y Ridge. Dado que Lasso realiza regularización L1, que puede reducir algunos coeficientes a cero, esto podría sugerir que algunos predictores han sido completamente excluidos del modelo, lo que podría llevar a una menor capacidad explicativa.</p>
+<p><strong>Interpretación General:</strong>
+<strong>Los tres modelos tienen un rendimiento similar en cuanto a RMSE y MAE, con diferencias mínimas entre ellos.</strong> Esto podría indicar que el conjunto de datos no tiene problemas graves de multicolinealidad, o que los predictores no tienen coeficientes lo suficientemente grandes como para que la regularización haga una diferencia sustancial. La ligera disminución en el rendimiento de Lasso en términos de R^2 podría deberse a la exclusión de algunos predictores que podrían tener algún grado de relevancia en el modelo.</p>
+<p><em>La elección entre estos modelos podría depender de si se prefiere la simplicidad del modelo (Lasso podría proporcionar un modelo más sencillo con menos predictores) o si se busca capturar toda la variabilidad posible (en cuyo caso, la regresión lineal o Ridge serían preferibles).</em></p>
+</section>
+</section>
+</section>
+<section id="fraud-detection">
+<h1><strong>Fraud Detection</strong><a class="headerlink" href="#fraud-detection" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2><strong>Importacion de datos:</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargar los conjuntos de datos desde archivos CSV</span>
+<span class="n">train_transaction</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train_transaction.csv&#39;</span><span class="p">)</span>
+<span class="n">train_identity</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train_identity.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Fusionar los conjuntos de datos en base a la columna &#39;TransactionID&#39;</span>
+<span class="n">merged_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">train_transaction</span><span class="p">,</span> <span class="n">train_identity</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;TransactionID&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2><strong>Estrutura de los datos:</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 590540 entries, 0 to 590539
+Columns: 434 entries, TransactionID to DeviceInfo
+dtypes: float64(399), int64(4), object(31)
+memory usage: 1.9+ GB
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3><strong>Tamaño:</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(590540, 434)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3><strong>Conteo de nulos:</strong><a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conteo de datos faltantes por columna</span>
+<span class="n">datos_faltantes2</span> <span class="o">=</span> <span class="n">merged_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calcular el porcentaje de datos faltantes por columna</span>
+<span class="n">porcentaje_faltantes2</span> <span class="o">=</span> <span class="p">(</span><span class="n">datos_faltantes2</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged_data</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Crear un DataFrame para mostrar los resultados</span>
+<span class="n">df_faltantes2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Datos faltantes&#39;</span><span class="p">:</span> <span class="n">datos_faltantes2</span><span class="p">,</span> <span class="s1">&#39;Porcentaje faltantes&#39;</span><span class="p">:</span> <span class="n">porcentaje_faltantes</span><span class="p">})</span>
+
+<span class="c1"># Mostrar el DataFrame con los resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_faltantes2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Datos faltantes  Porcentaje faltantes
+C1                   0.0                   NaN
+C10                  0.0                   NaN
+C11                  0.0                   NaN
+C12                  0.0                   NaN
+C13                  0.0                   NaN
+...                  ...                   ...
+id_35           449555.0                   NaN
+id_36           449555.0                   NaN
+id_37           449555.0                   NaN
+id_38           449555.0                   NaN
+isFraud              0.0                   NaN
+
+[447 rows x 2 columns]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="imputacion-de-datos-faltantes-usando-la-mediana">
+<h2><strong>imputacion de datos faltantes usando la mediana:</strong><a class="headerlink" href="#imputacion-de-datos-faltantes-usando-la-mediana" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imp</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">merged_data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="revision-de-nulos-post-imputacion">
+<h2><strong>Revision de nulos post imputacion:</strong><a class="headerlink" href="#revision-de-nulos-post-imputacion" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar los valores nulos en cada columna</span>
+<span class="n">missing_values</span> <span class="o">=</span> <span class="n">merged_data_imputed</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calcular el porcentaje de valores nulos en cada columna</span>
+<span class="n">percentage_missing</span> <span class="o">=</span> <span class="p">(</span><span class="n">missing_values</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged_data_imputed</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Crear un DataFrame con los resultados</span>
+<span class="n">missing_data_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Missing Values&#39;</span><span class="p">:</span> <span class="n">missing_values</span><span class="p">,</span> <span class="s1">&#39;Percentage&#39;</span><span class="p">:</span> <span class="n">percentage_missing</span><span class="p">})</span>
+
+<span class="c1"># Mostrar el resumen de datos faltantes</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_data_summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Punto1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Punto 1. Ejercicio Notas de Clase (1.0 puntos).</strong></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Punto 2.Análisis Exploratorio de Datos (1.0 puntos).</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#windspeed"><strong>WindSpeed:</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#liberias"><strong>Liberias:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-datos"><strong>Importacion de datos:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio"><strong>Analisis Exploratorio:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-de-los-datos"><strong>Estrutura de los datos:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano"><strong>Tamaño:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conteo-de-nulos"><strong>Conteo de nulos:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables"><strong>Variables:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renombre-de-las-columndas-del-dataframe"><strong>Renombre de las Columndas del Dataframe:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-en-el-formato"><strong>Cambio en el formato:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary"><strong>Summary:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion"><strong>Visualizacion:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histograma"><strong>Histograma:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplot"><strong>Boxplot:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot"><strong>ScatterPlot:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regplot"><strong>RegPlot:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlacion-entre-variables"><strong>Correlacion entre variables:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduccion-de-dimensiones"><strong>Reduccion de dimensiones:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-modelos"><strong>Comparacion de modelos:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-los-datos"><strong>Preparacion de los datos:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento"><strong>Entrenamiento:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-de-modelos"><strong>Evaluacion de modelos:</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fraud-detection"><strong>Fraud Detection</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Importacion de datos:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Estrutura de los datos:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Tamaño:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Conteo de nulos:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion-de-datos-faltantes-usando-la-mediana"><strong>imputacion de datos faltantes usando la mediana:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-de-nulos-post-imputacion"><strong>Revision de nulos post imputacion:</strong></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan Albis y Jesus Arevalo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

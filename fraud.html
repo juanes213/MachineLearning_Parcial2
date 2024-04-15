@@ -1,0 +1,1800 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>modelo &#8212; Machine Learning Parcial 2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fraud';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Librerias" href="wind.html" />
+    <link rel="prev" title="Machine Learning Parcial 2" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Machine Learning Parcial 2 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Machine Learning Parcial 2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Machine Learning Parcial 2
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wind.html">Librerias</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Punto1.html"><strong>Punto 1. Ejercicio Notas de Clase (1.0 puntos).</strong></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Punto2.html"><strong>Punto 2.Análisis Exploratorio de Datos (1.0 puntos).</strong></a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ffraud.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/fraud.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>modelo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">identity</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train_identity.csv&#39;</span><span class="p">)</span>
+<span class="n">transactions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train_transaction.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TransactionID</th>
+      <th>isFraud</th>
+      <th>TransactionDT</th>
+      <th>TransactionAmt</th>
+      <th>ProductCD</th>
+      <th>card1</th>
+      <th>card2</th>
+      <th>card3</th>
+      <th>card4</th>
+      <th>card5</th>
+      <th>...</th>
+      <th>V330</th>
+      <th>V331</th>
+      <th>V332</th>
+      <th>V333</th>
+      <th>V334</th>
+      <th>V335</th>
+      <th>V336</th>
+      <th>V337</th>
+      <th>V338</th>
+      <th>V339</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2987000</td>
+      <td>No es fraude</td>
+      <td>86400</td>
+      <td>68.5</td>
+      <td>W</td>
+      <td>13926</td>
+      <td>NaN</td>
+      <td>150.0</td>
+      <td>discover</td>
+      <td>142.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2987001</td>
+      <td>No es fraude</td>
+      <td>86401</td>
+      <td>29.0</td>
+      <td>W</td>
+      <td>2755</td>
+      <td>404.0</td>
+      <td>150.0</td>
+      <td>mastercard</td>
+      <td>102.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2987002</td>
+      <td>No es fraude</td>
+      <td>86469</td>
+      <td>59.0</td>
+      <td>W</td>
+      <td>4663</td>
+      <td>490.0</td>
+      <td>150.0</td>
+      <td>visa</td>
+      <td>166.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2987003</td>
+      <td>No es fraude</td>
+      <td>86499</td>
+      <td>50.0</td>
+      <td>W</td>
+      <td>18132</td>
+      <td>567.0</td>
+      <td>150.0</td>
+      <td>mastercard</td>
+      <td>117.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2987004</td>
+      <td>No es fraude</td>
+      <td>86506</td>
+      <td>50.0</td>
+      <td>H</td>
+      <td>4497</td>
+      <td>514.0</td>
+      <td>150.0</td>
+      <td>mastercard</td>
+      <td>102.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 394 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cambio_nombre</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;No es fraude&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Es fraude&#39;</span><span class="p">}</span>
+
+<span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">cambio_nombre</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;isFraud&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">transactions</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de la Variable Respuesta&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La barra correspondiente a “No es fraude” es la más alta, lo que indica que la mayoría de los créditos en el conjunto de datos no son fraudulentos. La categoría “Es fraude” tiene una barra mucho más baja, lo que sugiere que hay una cantidad significativamente menor de créditos fraudulentos en comparación con los no fraudulentos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;card4&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">transactions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;No es fraude&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;card4 isFraud=0&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;card4&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">transactions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Es fraude&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;card4 isFraud=1&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">missing_data</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">percent</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">missing_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">total</span><span class="p">,</span> <span class="n">percent</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="s1">&#39;Percent&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">missing_df</span><span class="p">[</span><span class="n">missing_df</span><span class="p">[</span><span class="s1">&#39;Percent&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missing_trans</span> <span class="o">=</span> <span class="n">missing_data</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_trans</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Total    Percent
+dist1          352271  59.652352
+dist2          552913  93.628374
+R_emaildomain  453249  76.751617
+D2             280797  47.549192
+D3             262878  44.514851
+D4             168922  28.604667
+D5             309841  52.467403
+D6             517353  87.606767
+D7             551623  93.409930
+D8             515614  87.312290
+D9             515614  87.312290
+D11            279287  47.293494
+D12            525823  89.041047
+D13            528588  89.509263
+D14            528353  89.469469
+</pre></div>
+</div>
+</div>
+</div>
+<p>dist1, dist2:</p>
+<p>dist1 tiene 352,271 datos faltantes, lo que representa el 59.65% del total.
+dist2 tiene 552,913, un 93.63%, indicando que casi todos los datos para esta variable están ausentes.
+Esto podría indicar que dist2 es raramente registrado o relevante para un subconjunto de transacciones.</p>
+<p>R_emaildomain:</p>
+<p>453,249 registros faltantes, equivalente al 76.75%. Esto podría afectar análisis relacionados con el dominio de correo electrónico del receptor, importante en contextos de fraude o marketing.
+Variables D (D2, D3, …, D14):</p>
+<p>Estas variables tienen un rango variado de datos faltantes desde el 28.60% para D4 hasta el 89.51% para D13.
+Variables como D6, D7, D8, D9, D12, D13, y D14 tienen más del 87% de datos faltantes, lo que sugiere que son campos opcionalmente registrados o relevantes sólo para ciertas condiciones o tipos de transacciones.
+D2, D3, D11 tienen menos de la mitad de datos faltantes, pero aún significativos para requerir atención en su manejo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">missing_data</span><span class="p">(</span><span class="n">identity</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        Total    Percent
+id_03   77909  54.016071
+id_04   77909  54.016071
+id_07  139078  96.425922
+id_08  139078  96.425922
+id_09   69307  48.052110
+id_10   69307  48.052110
+id_14   64189  44.503685
+id_18   99120  68.722137
+id_21  139074  96.423149
+id_22  139064  96.416215
+id_23  139064  96.416215
+id_24  139486  96.708798
+id_25  139101  96.441868
+id_26  139070  96.420375
+id_27  139064  96.416215
+id_30   66668  46.222432
+id_32   66647  46.207872
+id_33   70944  49.187079
+id_34   66428  46.056034
+</pre></div>
+</div>
+</div>
+</div>
+<p>id_03, id_04: Ambos tienen 77,909 datos faltantes, lo que representa el 54.02% del total de datos. Esto indica que más de la mitad de los datos para estos identificadores están ausentes.</p>
+<p>id_07, id_08: Tienen el mayor número de datos faltantes, con 139,078 cada uno, lo que corresponde al 96.43% del total de datos. Esto sugiere que prácticamente todos los datos para estos ID están ausentes, lo que podría ser problemático para cualquier análisis que dependa de estos campos.</p>
+<p>id_09, id_10: Cada uno tiene 69,307 datos faltantes, lo que constituye aproximadamente el 48.05% del total de datos. Esto muestra que casi la mitad de los datos están faltantes para estos IDs.</p>
+<p>id_14: Tiene 64,189 datos faltantes, o el 44.50% del total. Esto está cerca de la mitad, lo que podría limitar la utilidad de este ID para análisis detallados.</p>
+<p>id_18: Con 99,120 datos faltantes, este ID tiene un 68.72% de sus datos ausentes, lo que es significativamente alto.</p>
+<p>id_21, id_22, id_23, id_24, id_25, id_26, id_27: Todos estos identificadores tienen más del 96% de datos faltantes, similar a id_07 e id_08. Esto indica una casi completa ausencia de datos, lo que puede requerir consideraciones especiales como la imputación de datos o la posible exclusión de estos campos del análisis.</p>
+<p>id_30, id_32, id_33, id_34: Estos identificadores tienen entre 46% y 49% de datos faltantes. Son también significativos pero algo menos críticos comparados con otros IDs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">transactions</span><span class="p">,</span> <span class="n">identity</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;TransactionID&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_to_plot</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ProductCD&#39;</span><span class="p">,</span> <span class="s1">&#39;card4&#39;</span><span class="p">,</span> <span class="s1">&#39;TransactionDT&#39;</span><span class="p">,</span> <span class="s1">&#39;card1&#39;</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vars_to_plot</span><span class="p">):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">train</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribución de </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="modelo">
+<h1>modelo<a class="headerlink" href="#modelo" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">auc</span><span class="p">,</span> <span class="n">roc_curve</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">AdaBoostClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">ADASYN</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">imblearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">bayes_opt</span> <span class="kn">import</span> <span class="n">BayesianOptimization</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train_transaction.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[[</span><span class="s1">&#39;TransactionDT&#39;</span><span class="p">,</span> <span class="s1">&#39;TransactionAmt&#39;</span><span class="p">,</span> <span class="s1">&#39;C3&#39;</span><span class="p">,</span> <span class="s1">&#39;C5&#39;</span><span class="p">,</span> <span class="s1">&#39;card4&#39;</span><span class="p">,</span> <span class="s1">&#39;card6&#39;</span><span class="p">,</span> <span class="s1">&#39;isFraud&#39;</span><span class="p">,</span> <span class="s1">&#39;card3&#39;</span><span class="p">,</span> <span class="s1">&#39;card2&#39;</span><span class="p">]]</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;card6&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;card6&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;credit&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;debit&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+
+<span class="c1"># Perform one-hot encoding on &#39;card4&#39;</span>
+<span class="n">card4_dummies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;card4&#39;</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;card4&#39;</span><span class="p">)</span>
+
+<span class="c1"># Drop the original &#39;card4&#39; column and concatenate the new dummy columns</span>
+<span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;card4&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">card4_dummies</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">data</span><span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TransactionDT</th>
+      <th>TransactionAmt</th>
+      <th>C3</th>
+      <th>C5</th>
+      <th>card6</th>
+      <th>isFraud</th>
+      <th>card3</th>
+      <th>card2</th>
+      <th>card4_american express</th>
+      <th>card4_discover</th>
+      <th>card4_mastercard</th>
+      <th>card4_visa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>86401</td>
+      <td>29.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>150.0</td>
+      <td>404.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>86469</td>
+      <td>59.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>150.0</td>
+      <td>490.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>86499</td>
+      <td>50.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>150.0</td>
+      <td>567.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>86506</td>
+      <td>50.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>150.0</td>
+      <td>514.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>86510</td>
+      <td>49.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>150.0</td>
+      <td>555.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span>
+
+<span class="c1"># Dividiendo los datos en conjuntos de entrenamiento y prueba</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipelines</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">DecisionTreeClassifier</span><span class="p">())]),</span>
+    <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">())]),</span>
+    <span class="s2">&quot;XGBoost&quot;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span><span class="p">))]),</span>
+    <span class="s2">&quot;KNN&quot;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">())]),</span>
+    <span class="s2">&quot;Logistic Regression L1&quot;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;liblinear&#39;</span><span class="p">))]),</span>
+    <span class="s2">&quot;Logistic Regression L2&quot;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">))]),</span>
+    <span class="s2">&quot;Naive Bayes&quot;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">GaussianNB</span><span class="p">())])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">evaluate_model</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>  
+    <span class="n">auc_roc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC ROC:&quot;</span><span class="p">,</span> <span class="n">auc_roc</span><span class="p">)</span>
+    <span class="c1"># Return a dictionary with metrics and probabilities for plotting</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;AUC ROC&#39;</span><span class="p">:</span> <span class="n">auc_roc</span><span class="p">,</span> 
+        <span class="s1">&#39;Precision&#39;</span><span class="p">:</span> <span class="n">precision</span><span class="p">,</span> 
+        <span class="s1">&#39;Recall&#39;</span><span class="p">:</span> <span class="n">recall</span><span class="p">,</span> 
+        <span class="s1">&#39;F1 Score&#39;</span><span class="p">:</span> <span class="n">f1</span><span class="p">,</span>
+        <span class="s1">&#39;Probabilities&#39;</span><span class="p">:</span> <span class="n">probabilities</span><span class="p">,</span>
+        <span class="s1">&#39;True Labels&#39;</span><span class="p">:</span> <span class="n">y_test</span>
+    <span class="p">}</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">pipelines</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> without ADASYN:&quot;</span><span class="p">)</span>
+    <span class="n">model_results</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> without ADASYN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_results</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> with ADASYN:&quot;</span><span class="p">)</span>
+    <span class="n">model_results_adasyn</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> with ADASYN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_results_adasyn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/7 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results for Decision Tree without ADASYN:
+AUC ROC: 0.7340907028758503
+Results for Decision Tree with ADASYN:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 14%|█▍        | 1/7 [00:12&lt;01:17, 12.96s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC ROC: 0.6579670137909774
+Results for Random Forest without ADASYN:
+AUC ROC: 0.8748666781272016
+Results for Random Forest with ADASYN:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 29%|██▊       | 2/7 [06:26&lt;18:46, 225.30s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC ROC: 0.8270591551420775
+Results for XGBoost without ADASYN:
+AUC ROC: 0.8485662728031772
+Results for XGBoost with ADASYN:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 43%|████▎     | 3/7 [08:19&lt;11:34, 173.67s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC ROC: 0.7808157500009067
+Results for KNN without ADASYN:
+AUC ROC: 0.7787045300505091
+Results for KNN with ADASYN:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|█████▋    | 4/7 [24:46&lt;24:44, 494.98s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC ROC: 0.6839778383425691
+Results for Logistic Regression L1 without ADASYN:
+AUC ROC: 0.7205690010263461
+Results for Logistic Regression L1 with ADASYN:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|███████▏  | 5/7 [28:53&lt;13:30, 405.34s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC ROC: 0.6726497999281877
+Results for Logistic Regression L2 without ADASYN:
+AUC ROC: 0.7205535012285746
+Results for Logistic Regression L2 with ADASYN:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 86%|████████▌ | 6/7 [28:57&lt;04:29, 269.12s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC ROC: 0.6726478613752944
+Results for Naive Bayes without ADASYN:
+AUC ROC: 0.7110056031596437
+Results for Naive Bayes with ADASYN:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 7/7 [28:59&lt;00:00, 248.55s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC ROC: 0.6514609984742877
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results:
+                                        AUC ROC  Precision    Recall  F1 Score
+Decision Tree without ADASYN           0.735377   0.468512  0.491292  0.479632
+Decision Tree with ADASYN              0.725698   0.370006  0.481616  0.418497
+Random Forest without ADASYN           0.872193   0.730754  0.438558  0.548148
+Random Forest with ADASYN              0.860317   0.555206  0.469521  0.508781
+XGBoost without ADASYN                 0.848566   0.847645  0.074020  0.136151
+XGBoost with ADASYN                    0.810059   0.247710  0.327044  0.281902
+KNN without ADASYN                     0.778705   0.509121  0.222787  0.309944
+KNN with ADASYN                        0.776790   0.213526  0.422351  0.283649
+Logistic Regression L1 without ADASYN  0.720569   0.083333  0.000726  0.001439
+Logistic Regression L1 with ADASYN     0.717371   0.104268  0.446783  0.169077
+Logistic Regression L2 without ADASYN  0.720554   0.081081  0.000726  0.001439
+Logistic Regression L2 with ADASYN     0.717370   0.104274  0.446783  0.169085
+Naive Bayes without ADASYN             0.711006   0.124063  0.404451  0.189881
+Naive Bayes with ADASYN                0.694358   0.036697  0.952588  0.070672
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Decision Tree without ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El área bajo la curva ROC (AUC ROC) es 0.735377, lo que indica un rendimiento decente en la capacidad de discriminación.</p></li>
+<li><p>La precisión es 0.468512, lo que significa que de todas las instancias clasificadas como positivas, el 46.85% realmente son positivas.</p></li>
+<li><p>La recuperación (recall) es 0.491292, lo que indica que se capturan el 49.13% de todas las instancias positivas.</p></li>
+<li><p>El F1-score es 0.479632, que es una medida combinada de precisión y recuperación.</p></li>
+</ul>
+<p><strong>Decision Tree with ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El AUC ROC disminuye ligeramente a 0.725698.</p></li>
+<li><p>La precisión disminuye a 0.370006, lo que indica que el 37.00% de las instancias clasificadas como positivas realmente son positivas.</p></li>
+<li><p>La recuperación aumenta ligeramente a 0.481616.</p></li>
+<li><p>El F1-score disminuye a 0.418497.</p></li>
+</ul>
+<p><strong>Random Forest without ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El área bajo la curva ROC (AUC ROC) es alto, con un valor de 0.872193, lo que indica un buen rendimiento en la capacidad de discriminación.</p></li>
+<li><p>La precisión es 0.730754, lo que significa que el 73.08% de las instancias clasificadas como positivas realmente son positivas.</p></li>
+<li><p>La recuperación (recall) es 0.438558, lo que indica que se capturan el 43.86% de todas las instancias positivas.</p></li>
+<li><p>El F1-score es 0.548148, que es una medida combinada de precisión y recuperación.</p></li>
+</ul>
+<p><strong>Random Forest with ADASYN:</strong></p>
+<ul class="simple">
+<li><p>Aunque el AUC ROC disminuye ligeramente a 0.860317, sigue siendo alto.</p></li>
+<li><p>La precisión disminuye a 0.555206, lo que significa que el 55.52% de las instancias clasificadas como positivas realmente son positivas.</p></li>
+<li><p>La recuperación aumenta ligeramente a 0.469521.</p></li>
+<li><p>El F1-score disminuye a 0.508781.</p></li>
+</ul>
+<p><strong>XGBoost without ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El área bajo la curva ROC (AUC ROC) es alto, con un valor de 0.848566, lo que indica un buen rendimiento en la capacidad de discriminación.</p></li>
+<li><p>La precisión es 0.847645, lo que significa que el 84.76% de las instancias clasificadas como positivas realmente son positivas.</p></li>
+<li><p>La recuperación (recall) es muy baja, solo 0.074020, lo que indica que el modelo captura solo una pequeña fracción de todas las instancias positivas.</p></li>
+<li><p>El F1-score es 0.136151, una medida baja debido a la baja recuperación.</p></li>
+</ul>
+<p><strong>XGBoost with ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El AUC ROC disminuye a 0.810059.</p></li>
+<li><p>La precisión disminuye significativamente a 0.247710.</p></li>
+<li><p>La recuperación aumenta a 0.327044.</p></li>
+<li><p>El F1-score también aumenta a 0.281902.</p></li>
+</ul>
+<p><strong>KNN without ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El área bajo la curva ROC (AUC ROC) es moderado, con un valor de 0.778705, indicando un rendimiento aceptable en la capacidad de discriminación.</p></li>
+<li><p>La precisión es 0.509121, lo que significa que el 50.91% de las instancias clasificadas como positivas realmente son positivas.</p></li>
+<li><p>La recuperación (recall) es relativamente baja, con un valor de 0.222787, indicando que solo se capturan el 22.28% de todas las instancias positivas.</p></li>
+<li><p>El F1-score es 0.309944, una medida que combina precisión y recuperación.</p></li>
+</ul>
+<p><strong>KNN with ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El AUC ROC apenas cambia, siendo 0.776790.</p></li>
+<li><p>La precisión disminuye significativamente a 0.213526.</p></li>
+<li><p>La recuperación mejora considerablemente a 0.422351.</p></li>
+<li><p>El F1-score disminuye a 0.283649.</p></li>
+</ul>
+<p><strong>Logistic Regression L1 without ADASYN:</strong></p>
+<p>El área bajo la curva ROC (AUC ROC) es 0.720569, indicando un rendimiento aceptable en la capacidad de discriminación.
+La precisión es muy baja, solo 0.083333, lo que significa que solo el 8.33% de las instancias clasificadas como positivas realmente son positivas.
+La recuperación (recall) también es extremadamente baja, con un valor de 0.000726, indicando que se captura una fracción mínima de todas las instancias positivas.
+El F1-score es 0.001439, indicando un rendimiento muy bajo debido a la baja precisión y recuperación.</p>
+<p><strong>Logistic Regression L1 with ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El AUC ROC disminuye ligeramente a 0.717371.</p></li>
+<li><p>La precisión aumenta ligeramente a 0.104268.</p></li>
+<li><p>La recuperación mejora significativamente a 0.446783.</p></li>
+<li><p>El F1-score aumenta a 0.169077.</p></li>
+</ul>
+<p><strong>Logistic Regression L2 without ADASYN:</strong></p>
+<ul class="simple">
+<li><p>Los resultados son casi idénticos a los de la Regresión Logística L1 sin ADASYN.</p></li>
+</ul>
+<p><strong>Logistic Regression L2 with ADASYN:</strong></p>
+<ul class="simple">
+<li><p>Los resultados son casi idénticos a los de la Regresión Logística L1 con ADASYN.</p></li>
+</ul>
+<p><strong>Naive Bayes without ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El área bajo la curva ROC (AUC ROC) es 0.711006, indicando un rendimiento moderado en la capacidad de discriminación.</p></li>
+<li><p>La precisión es 0.124063, lo que significa que solo el 12.41% de las instancias clasificadas como positivas realmente son positivas.</p></li>
+<li><p>La recuperación (recall) es 0.404451, lo que indica que se captura el 40.45% de todas las instancias positivas.</p></li>
+<li><p>El F1-score es 0.189881, una medida combinada de precisión y recuperación.</p></li>
+</ul>
+<p><strong>Naive Bayes with ADASYN:</strong></p>
+<ul class="simple">
+<li><p>El AUC ROC disminuye ligeramente a 0.694358.</p></li>
+<li><p>La precisión disminuye significativamente a 0.036697.</p></li>
+<li><p>La recuperación mejora drásticamente a 0.952588.</p></li>
+<li><p>El F1-score disminuye a 0.070672.</p></li>
+</ul>
+<p>En resumen, el uso de ADASYN puede ser beneficioso para mejorar la capacidad de los modelos para detectar casos positivos en problemas de desequilibrio de clases, especialmente en modelos más robustos como RandomForest y XGBoost. Sin embargo, es importante equilibrar la mejora en la recuperación con la posible disminución en la precisión al utilizar esta técnica de sobremuestreo. La elección del modelo dependerá de las necesidades específicas del problema y de los objetivos de optimización de precisión y recuperación.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_roc_curve</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
+    <span class="n">roc_auc</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ROC curve (area = </span><span class="si">%0.2f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">roc_auc</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ROC Curve for &#39;</span> <span class="o">+</span> <span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">model_results</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">plot_roc_curve</span><span class="p">(</span><span class="n">model_results</span><span class="p">[</span><span class="s1">&#39;True Labels&#39;</span><span class="p">],</span> <span class="n">model_results</span><span class="p">[</span><span class="s1">&#39;Probabilities&#39;</span><span class="p">],</span> <span class="s1">&#39;ROC Curve for &#39;</span> <span class="o">+</span> <span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1f85e04da87d9ca4fe556dedc4ea69ff51e050fdd5e4fa23ef3937bcea1cc658.png" src="_images/1f85e04da87d9ca4fe556dedc4ea69ff51e050fdd5e4fa23ef3937bcea1cc658.png" />
+<img alt="_images/250561756cdd9052b21c597213972257dea1fdc2950e35de49e8f881a77469d9.png" src="_images/250561756cdd9052b21c597213972257dea1fdc2950e35de49e8f881a77469d9.png" />
+<img alt="_images/12464006eca57827aa6ea8ce1b5ff6ae349c47869be9daae6658b3c3267a7b91.png" src="_images/12464006eca57827aa6ea8ce1b5ff6ae349c47869be9daae6658b3c3267a7b91.png" />
+<img alt="_images/012707d7e883a1de260a4ab20eca5155310614aadb5ea7438dbf5c9e67f6a918.png" src="_images/012707d7e883a1de260a4ab20eca5155310614aadb5ea7438dbf5c9e67f6a918.png" />
+<img alt="_images/bf572989cbf028e9c2475647d8b50cfa543c828ee01262322bfc5e62fb7e93a7.png" src="_images/bf572989cbf028e9c2475647d8b50cfa543c828ee01262322bfc5e62fb7e93a7.png" />
+<img alt="_images/449d21fd2ebab70425593451e394a175c18a33508e070e1770e0f281ca9098cc.png" src="_images/449d21fd2ebab70425593451e394a175c18a33508e070e1770e0f281ca9098cc.png" />
+<img alt="_images/f057a64281f4337d2c91e82538066628c833edf140487eba0dd81bb400901df4.png" src="_images/f057a64281f4337d2c91e82538066628c833edf140487eba0dd81bb400901df4.png" />
+<img alt="_images/486235275cfe69a9ebe210297c2c1e08c3de8627e9bbffbe10c6da46433f4f2e.png" src="_images/486235275cfe69a9ebe210297c2c1e08c3de8627e9bbffbe10c6da46433f4f2e.png" />
+<img alt="_images/42d860dc0a99b6910c4cd5ec00f9a6647669b40cf3b2fde20e0b5f6d630446d6.png" src="_images/42d860dc0a99b6910c4cd5ec00f9a6647669b40cf3b2fde20e0b5f6d630446d6.png" />
+<img alt="_images/606c9126bb5714414d5b0cc8b6b3c189bebc175c105e1a45fb6f3924afbfc667.png" src="_images/606c9126bb5714414d5b0cc8b6b3c189bebc175c105e1a45fb6f3924afbfc667.png" />
+<img alt="_images/278b1e237e5c7366bcc870747ae90545d14658214bdf71a9a34970d795ea4fed.png" src="_images/278b1e237e5c7366bcc870747ae90545d14658214bdf71a9a34970d795ea4fed.png" />
+<img alt="_images/b07efb680ab47b44c014e849c62e7c5d11b84eb5cc97f268bac0a56e2d1f7bf5.png" src="_images/b07efb680ab47b44c014e849c62e7c5d11b84eb5cc97f268bac0a56e2d1f7bf5.png" />
+<img alt="_images/8ddeca5f1487c1d8ddcec16b28cb274ea80610a6c15346f7d5a476cea373e9bb.png" src="_images/8ddeca5f1487c1d8ddcec16b28cb274ea80610a6c15346f7d5a476cea373e9bb.png" />
+<img alt="_images/e643676a18729a3487528c3ab9be3654c135bcde419e12dc49f1d10ff897baae.png" src="_images/e643676a18729a3487528c3ab9be3654c135bcde419e12dc49f1d10ff897baae.png" />
+</div>
+</div>
+<p><strong>Arbol de decisión sin ADASYN:</strong></p>
+<ul class="simple">
+<li><p>interpretación: la gráfica indica que el modelo de árbol de decisión sin ADASYN tiene un rendimiento decente en la tarea de clasificación con un AUC de 0.73. Esto significa que tiene una capacidad razonablemente buena para distinguir entre las clases</p></li>
+</ul>
+<p><strong>Árbol de decisión con ADASYN:</strong></p>
+<p>AUC: 0.66</p>
+<ul class="simple">
+<li><p>Interpretación: El rendimiento ha disminuido ligeramente con respecto a la versión sin ADASYN (donde el AUC fue 0.73). Esto sugiere que ADASYN, que genera muestras sintéticas de la clase minoritaria, no ha beneficiado al modelo de árbol de decisión en este caso y ha llevado a una menor capacidad para discriminar entre las clases.</p></li>
+</ul>
+<p><strong>Bosque Aleatorio sin ADASYN:</strong></p>
+<p>AUC: 0.87</p>
+<ul class="simple">
+<li><p>Interpretación: El modelo de bosque aleatorio muestra un excelente rendimiento en la discriminación de clases sin el uso de ADASYN. Tiene una alta AUC, lo que indica una fuerte capacidad de clasificación.</p></li>
+</ul>
+<p><strong>Bosque Aleatorio con ADASYN:</strong></p>
+<p>AUC: 0.83</p>
+<ul class="simple">
+<li><p>Interpretación: Aunque la AUC es alta, hay una disminución en el rendimiento comparado con el modelo sin ADASYN. Esto podría indicar que la introducción de datos sintéticos de ADASYN no fue tan beneficiosa para el modelo de bosque aleatorio.</p></li>
+</ul>
+<p><strong>XGBoost sin ADASYN:</strong></p>
+<p>AUC: 0.85</p>
+<ul class="simple">
+<li><p>Interpretación: El modelo XGBoost sin ADASYN tiene un rendimiento muy sólido, con una AUC que indica una buena capacidad para distinguir entre las clases positivas y negativas.</p></li>
+</ul>
+<p><strong>XGBoost con ADASYN:</strong></p>
+<p>AUC: 0.78</p>
+<ul class="simple">
+<li><p>Interpretación: Similar a los modelos anteriores, se observa una disminución en el rendimiento con ADASYN. Esto podría sugerir que la clase minoritaria original no estaba tan desequilibrada como para requerir el muestreo ADASYN, o que el método no se alinea bien con la distribución de los datos para este modelo.</p></li>
+</ul>
+<p><strong>KNN sin ADASYN:</strong></p>
+<p>AUC: 0.78</p>
+<ul class="simple">
+<li><p>Interpretación: El modelo KNN muestra una capacidad aceptable para la clasificación de clases. El valor de AUC es decente pero podría ser mejorado.</p></li>
+</ul>
+<p><strong>KNN con ADASYN:</strong></p>
+<p>AUC: 0.68</p>
+<ul class="simple">
+<li><p>Interpretación: La versión con ADASYN del modelo KNN muestra un rendimiento inferior en comparación con su versión sin ADASYN. Esto sugiere que ADASYN no ha tenido un efecto positivo en la capacidad del modelo KNN para diferenciar las clases.</p></li>
+</ul>
+<p><strong>Regresión Logística L1 sin ADASYN:</strong></p>
+<p>AUC: 0.72</p>
+<ul class="simple">
+<li><p>Interpretación: El modelo tiene una buena capacidad para distinguir entre clases. Un AUC de 0.72 sugiere que el modelo tiene una discriminación adecuada, pero hay margen para mejoras.</p></li>
+</ul>
+<p><strong>Regresión Logística L1 con ADASYN:</strong></p>
+<p>AUC: 0.67</p>
+<ul class="simple">
+<li><p>Interpretación: La capacidad del modelo para discriminar entre clases ha disminuido tras aplicar ADASYN. Esto podría sugerir que el sobremuestreo de la clase minoritaria ha introducido ruido o ha causado sobreajuste.</p></li>
+</ul>
+<p><strong>Regresión Logística L2 sin ADASYN:</strong></p>
+<p>AUC: 0.72</p>
+<ul class="simple">
+<li><p>Interpretación: Similar al modelo L1 sin ADASYN, la regularización L2 muestra una capacidad comparable para distinguir entre las clases positivas y negativas.</p></li>
+</ul>
+<p><strong>Regresión Logística L2 con ADASYN:</strong></p>
+<p>AUC: 0.67</p>
+<ul class="simple">
+<li><p>Interpretación: Al igual que con L1, la versión con ADASYN muestra un rendimiento disminuido. Esto refuerza la idea de que ADASYN puede no ser la mejor técnica de balanceo para estos modelos en estos datos específicos.</p></li>
+</ul>
+<p><strong>Naive Bayes sin ADASYN:</strong></p>
+<p>AUC: 0.71</p>
+<ul class="simple">
+<li><p>Interpretación: El modelo Naive Bayes sin ADASYN tiene una AUC ligeramente menor que la regresión logística, lo que indica una capacidad razonable para clasificar correctamente las clases.</p></li>
+</ul>
+<p><strong>Naive Bayes con ADASYN:</strong></p>
+<p>AUC: 0.65</p>
+<ul class="simple">
+<li><p>Interpretación: El rendimiento disminuye con la implementación de ADASYN, lo cual es una tendencia común entre todos los modelos evaluados. Esto puede indicar que la técnica ADASYN no está ayudando a los modelos a mejorar su capacidad para diferenciar entre clases.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_results</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;Nombre del Modelo without ADASYN&#39;</span><span class="p">]</span>
+<span class="n">true_labels</span> <span class="o">=</span> <span class="n">model_results</span><span class="p">[</span><span class="s1">&#39;True Labels&#39;</span><span class="p">]</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="n">model_results</span><span class="p">[</span><span class="s1">&#39;Probabilities&#39;</span><span class="p">]</span>
+<span class="n">plot_roc_curve</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">,</span> <span class="s1">&#39;Nombre del Modelo without ADASYN&#39;</span><span class="p">)</span>
+
+<span class="c1"># Llamar a la función para trazar la curva ROC con los resultados del modelo con ADASYN</span>
+<span class="n">model_results_adasyn</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;Nombre del Modelo with ADASYN&#39;</span><span class="p">]</span>
+<span class="n">true_labels_adasyn</span> <span class="o">=</span> <span class="n">model_results_adasyn</span><span class="p">[</span><span class="s1">&#39;True Labels&#39;</span><span class="p">]</span>
+<span class="n">probabilities_adasyn</span> <span class="o">=</span> <span class="n">model_results_adasyn</span><span class="p">[</span><span class="s1">&#39;Probabilities&#39;</span><span class="p">]</span>
+<span class="n">plot_roc_curve</span><span class="p">(</span><span class="n">true_labels_adasyn</span><span class="p">,</span> <span class="n">probabilities_adasyn</span><span class="p">,</span> <span class="s1">&#39;Nombre del Modelo with ADASYN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">72</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">model_results</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;Nombre del Modelo without ADASYN&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">true_labels</span> <span class="o">=</span> <span class="n">model_results</span><span class="p">[</span><span class="s1">&#39;True Labels&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">probabilities</span> <span class="o">=</span> <span class="n">model_results</span><span class="p">[</span><span class="s1">&#39;Probabilities&#39;</span><span class="p">]</span>
+
+<span class="ne">KeyError</span>: &#39;Nombre del Modelo without ADASYN&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">bayes_opt</span> <span class="kn">import</span> <span class="n">BayesianOptimization</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="k">def</span> <span class="nf">preprocess_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Convert categorical variable to numeric using LabelEncoder</span>
+    <span class="n">labelencoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">labelencoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+    <span class="c1"># Fill NaN values with the mean of the column</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="k">def</span> <span class="nf">xgb_crossval</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">preprocess_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Preprocess the data first</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span>
+        <span class="n">eta</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span>
+        <span class="n">max_depth</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">max_depth</span><span class="p">),</span>
+        <span class="n">gamma</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span><span class="p">,</span>
+        <span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">cval</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cval</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">optimize_xgb</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="c1"># Function to optimize the XGB model</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">BayesianOptimization</span><span class="p">(</span>
+        <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">eta</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">gamma</span><span class="p">:</span> <span class="n">xgb_crossval</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">),</span>
+        <span class="n">pbounds</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;eta&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
+            <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="n">init_points</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="c1"># Initialize points with progress bar</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">init_points</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Initializing optimization&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;iteration&#39;</span><span class="p">):</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">probe</span><span class="p">(</span>
+            <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;eta&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
+                <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+                <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+            <span class="p">},</span>
+            <span class="n">lazy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+    
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">init_points</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># start without initial points</span>
+
+    <span class="c1"># Optimization with progress bar</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Optimizing&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;iteration&#39;</span><span class="p">):</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">init_points</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters:&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">max</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">])</span>
+
+<span class="c1"># Example usage:</span>
+<span class="c1"># Replace &#39;X_resampled&#39; and &#39;y_resampled&#39; with your actual data variables</span>
+<span class="n">optimize_xgb</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initializing optimization: 100%|██████████| 2/2 [00:00&lt;?, ?iteration/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   iter    |  target   |    eta    |   gamma   | max_depth |
+-------------------------------------------------------------
+| 1         | 0.9838    | 0.1758    | 4.684     | 8.0       |
+| 2         | 0.9862    | 0.2387    | 4.779     | 8.0       |
+| 3         | 0.9887    | 0.2365    | 3.509     | 9.436     |
+=============================================================
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing:   0%|          | 0/3 [00:00&lt;?, ?iteration/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   iter    |  target   |    eta    |   gamma   | max_depth |
+-------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing:  33%|███▎      | 1/3 [06:22&lt;12:44, 382.39s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 4         | 0.9884    | 0.2408    | 3.559     | 9.457     |
+=============================================================
+|   iter    |  target   |    eta    |   gamma   | max_depth |
+-------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing:  67%|██████▋   | 2/3 [13:03&lt;06:33, 393.32s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 5         | 0.9863    | 0.1671    | 3.523     | 9.273     |
+=============================================================
+|   iter    |  target   |    eta    |   gamma   | max_depth |
+-------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing: 100%|██████████| 3/3 [16:06&lt;00:00, 322.25s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 6         | 0.9607    | 0.08779   | 0.4418    | 4.243     |
+=============================================================
+Best parameters: {&#39;eta&#39;: 0.23647240014345566, &#39;gamma&#39;: 3.5094711791986, &#39;max_depth&#39;: 9.436185823545124}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Mejores valores encontrado:</strong></p>
+<ul class="simple">
+<li><p>eta: 0.23647240014345566</p></li>
+<li><p>gamma: 3.5094711791986</p></li>
+<li><p>max_depth: 9.436185823545124</p></li>
+</ul>
+<p>La optimización bayesiana ayudó a identificar un conjunto de hiperparámetros que probablemente logren un buen equilibrio entre complejidad y rendimiento para el modelo XGBoost. Los mejores parámetros según el proceso de optimización sugieren que una profundidad máxima y una gamma más altas pueden gestionar eficazmente la complejidad y el sobreajuste del modelo, mientras que una eta de aproximadamente 0,236 permite un aprendizaje rápido pero estable. Estos conocimientos pueden guiar mayores refinamientos y pruebas del modelo XGBoost en diferentes condiciones o en escenarios de producción.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dtree_cv</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+        <span class="n">max_depth</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">max_depth</span><span class="p">),</span>
+        <span class="n">min_samples_split</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">min_samples_split</span><span class="p">),</span>
+        <span class="n">min_samples_leaf</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">min_samples_leaf</span><span class="p">),</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+    <span class="n">cval</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cval</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">optimize_dtree</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dtree_crossval</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">dtree_cv</span><span class="p">(</span>
+            <span class="n">max_depth</span><span class="o">=</span><span class="n">max_depth</span><span class="p">,</span>
+            <span class="n">min_samples_split</span><span class="o">=</span><span class="n">min_samples_split</span><span class="p">,</span>
+            <span class="n">min_samples_leaf</span><span class="o">=</span><span class="n">min_samples_leaf</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">targets</span><span class="o">=</span><span class="n">targets</span>
+        <span class="p">)</span>
+
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">BayesianOptimization</span><span class="p">(</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">dtree_crossval</span><span class="p">,</span>
+        <span class="n">pbounds</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+            <span class="s2">&quot;min_samples_split&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+            <span class="s2">&quot;min_samples_leaf&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">init_points</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">init_points</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Initializing optimization&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;iteration&#39;</span><span class="p">):</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">probe</span><span class="p">(</span>
+            <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+                <span class="s2">&quot;min_samples_split&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+                <span class="s2">&quot;min_samples_leaf&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="p">},</span>
+            <span class="n">lazy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Optimizing&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;iteration&#39;</span><span class="p">):</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">init_points</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters:&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">max</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">])</span>
+
+<span class="n">optimize_dtree</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initializing optimization: 100%|██████████| 2/2 [00:00&lt;00:00, 1980.31iteration/s]
+Optimizing:   0%|          | 0/3 [00:00&lt;?, ?iteration/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   iter    |  target   | max_depth | min_sa... | min_sa... |
+-------------------------------------------------------------
+| 1         | 0.9435    | 8.837     | 1.104     | 12.57     |
+| 2         | 0.9388    | 7.262     | 3.261     | 18.04     |
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing:  33%|███▎      | 1/3 [00:53&lt;01:46, 53.19s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 3         | 0.9733    | 16.28     | 7.317     | 18.55     |
+=============================================================
+|   iter    |  target   | max_depth | min_sa... | min_sa... |
+-------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing:  67%|██████▋   | 2/3 [01:16&lt;00:35, 35.36s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 4         | 0.9785    | 19.56     | 9.212     | 19.29     |
+=============================================================
+|   iter    |  target   | max_depth | min_sa... | min_sa... |
+-------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing: 100%|██████████| 3/3 [01:38&lt;00:00, 32.94s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 5         | 0.9794    | 20.0      | 10.0      | 7.601     |
+=============================================================
+Best parameters: {&#39;max_depth&#39;: 20.0, &#39;min_samples_leaf&#39;: 10.0, &#39;min_samples_split&#39;: 7.601037149300984}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Mejores parámetros encontrados:</strong></p>
+<p>Después de completar las iteraciones, se encontraron los mejores parámetros con un valor objetivo de 0.9794.
+Los mejores hiperparámetros fueron:</p>
+<ul class="simple">
+<li><p>max_depth: 20.0</p></li>
+<li><p>min_samples_leaf: 10.0</p></li>
+<li><p>min_samples_split: 7.601</p></li>
+</ul>
+<p>En resumen, el proceso de optimización encontró un conjunto de hiperparámetros que resultaron en un buen rendimiento del modelo de Decision Tree, con un valor objetivo de 0.9794 en la métrica de interés (ROC-AUC).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">knn_cv</span><span class="p">(</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span>
+        <span class="n">n_neighbors</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n_neighbors</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">cval</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cval</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">optimize_knn</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">knn_crossval</span><span class="p">(</span><span class="n">n_neighbors</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">knn_cv</span><span class="p">(</span>
+            <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">targets</span><span class="o">=</span><span class="n">targets</span>
+        <span class="p">)</span>
+
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">BayesianOptimization</span><span class="p">(</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">knn_crossval</span><span class="p">,</span>
+        <span class="n">pbounds</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">init_points</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">init_points</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Initializing optimization&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;iteration&#39;</span><span class="p">):</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">probe</span><span class="p">(</span>
+            <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)},</span>
+            <span class="n">lazy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Optimizing&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;iteration&#39;</span><span class="p">):</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">init_points</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters:&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">max</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">])</span>
+
+<span class="n">optimize_knn</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initializing optimization: 100%|██████████| 2/2 [00:00&lt;?, ?iteration/s]
+Optimizing:   0%|          | 0/3 [00:00&lt;?, ?iteration/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   iter    |  target   | n_neig... |
+-------------------------------------
+| 1         | 0.7883    | 25.97     |
+| 2         | 0.8148    | 14.43     |
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing:  33%|███▎      | 1/3 [01:16&lt;02:32, 76.21s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 3         | 0.8148    | 14.43     |
+=====================================
+|   iter    |  target   | n_neig... |
+-------------------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing:  67%|██████▋   | 2/3 [01:39&lt;00:45, 45.00s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 4         | 0.8315    | 9.163     |
+=====================================
+|   iter    |  target   | n_neig... |
+-------------------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing: 100%|██████████| 3/3 [02:01&lt;00:00, 40.52s/iteration]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 5         | 0.8444    | 3.0       |
+=====================================
+Best parameters: {&#39;n_neighbors&#39;: 3.0}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mejores parámetros encontrados:</p>
+<p>Después de completar las iteraciones, se encontró que el mejor número de vecinos es 3, con un valor objetivo de 0.8444.</p>
+<p>En resumen, el proceso de optimización encontró que el mejor rendimiento del modelo k-NN se obtiene con un número de vecinos igual a 3, lo que resulta en un valor objetivo de 0.
+8444 en la métrica de interés (ROC-AUC).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">logreg_cv</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">penalty</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span>
+        <span class="n">C</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">C</span><span class="p">),</span>  <span class="c1"># Transform to positive number only</span>
+        <span class="n">penalty</span><span class="o">=</span><span class="n">penalty</span><span class="p">,</span>
+        <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;liblinear&#39;</span>  <span class="c1"># Suitable solver for l1 and l2</span>
+    <span class="p">)</span>
+    <span class="n">cval</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cval</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">optimize_logreg</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">penalty</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">logreg_crossval</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">logreg_cv</span><span class="p">(</span>
+            <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">,</span>
+            <span class="n">penalty</span><span class="o">=</span><span class="n">penalty</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">targets</span><span class="o">=</span><span class="n">targets</span>
+        <span class="p">)</span>
+
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">BayesianOptimization</span><span class="p">(</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">logreg_crossval</span><span class="p">,</span>
+        <span class="n">pbounds</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Log space bounds</span>
+        <span class="p">},</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">init_points</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best parameters for </span><span class="si">{</span><span class="n">penalty</span><span class="si">}</span><span class="s2"> penalty:&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">max</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">])</span>
+
+<span class="n">optimize_logreg</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">,</span> <span class="s1">&#39;l1&#39;</span><span class="p">)</span>
+<span class="n">optimize_logreg</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">,</span> <span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   iter    |  target   |     C     |
+-------------------------------------
+| 1         | 0.8524    | -2.276    |
+| 2         | 0.8528    | 1.599     |
+| 3         | 0.8521    | 1.596     |
+| 4         | 0.8496    | 1.26      |
+| 5         | 0.8523    | 1.605     |
+=====================================
+Best parameters for l1 penalty: {&#39;C&#39;: 1.5989789393584868}
+|   iter    |  target   |     C     |
+-------------------------------------
+| 1         | 0.5223    | -2.276    |
+| 2         | 0.5223    | 1.599     |
+| 3         | 0.5223    | 5.0       |
+| 4         | 0.5223    | -3.999    |
+| 5         | 0.5223    | 4.999     |
+=====================================
+Best parameters for l2 penalty: {&#39;C&#39;: -2.2763249465899693}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Regularización L1 (Ridge):</strong></p>
+<p>Mejores parámetros encontrados:</p>
+<ul class="simple">
+<li><p>Después de completar las iteraciones, se encontró que el mejor valor de C para la regularización L1 es aproximadamente 1.599.</p></li>
+</ul>
+<p><strong>regularización L2 (Ridge):</strong></p>
+<p>Mejores parámetros encontrados:</p>
+<ul class="simple">
+<li><p>Para la regularización L2, el mejor valor de C encontrado fue aproximadamente -2.276.</p></li>
+</ul>
+<p>En resumen, para el modelo de regresión logística con regularización L1, el mejor valor de C encontrado fue 1.599, mientras que para la regularización L2, el mejor valor de C fue -2.276. Estos valores pueden variar dependiendo de la métrica utilizada y la naturaleza específica del conjunto de datos y el problema.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Machine Learning Parcial 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="wind.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Librerias</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan Albis y Jesus Arevalo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
